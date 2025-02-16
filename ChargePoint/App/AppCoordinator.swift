@@ -25,7 +25,7 @@ final class AppCoordinator: Coordinator {
         case 1:
             showAuth()
         case 2:
-            showIntro()
+            showHome()
         default: return
         }
 
@@ -49,17 +49,14 @@ final class AppCoordinator: Coordinator {
         auth.parentCoordinator = self
         auth.start()
     }
- //    fileprivate func showHome() {
- //        children.removeAll()
- //        navigationController.viewControllers = []
- //        let mainTabbar = MainTabBarCoordinator(navigationController: navigationController)
- //                children.append(mainTabbar)
- //        mainTabbar.parentCoordinator = self
- //        mainTabbar.start()
- //
- //    }
-     
-     
-    
+     fileprivate func showHome() {
+         children.removeAll()
+         navigationController.viewControllers = []
+         let mainTabbar = MainTabBarCoordinator(navigationController: navigationController)
+            children.append(mainTabbar)
+         mainTabbar.parentCoordinator = self
+         mainTabbar.start()
+ 
+     }
 }
 

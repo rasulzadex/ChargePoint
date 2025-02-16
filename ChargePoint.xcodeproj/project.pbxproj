@@ -38,6 +38,15 @@
 		2AD027B02D56BA7100D914EC /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD027AF2D56BA7100D914EC /* LoginViewModel.swift */; };
 		2AD027B32D56BB6600D914EC /* RegisterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD027B22D56BB6600D914EC /* RegisterController.swift */; };
 		2AF895122D5A6AC000124D75 /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF895112D5A6AC000124D75 /* RegisterViewModel.swift */; };
+		2AF895172D62141A00124D75 /* MapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF895162D62141A00124D75 /* MapController.swift */; };
+		2AF8951A2D6214EC00124D75 /* MainTabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF895192D6214EC00124D75 /* MainTabBarCoordinator.swift */; };
+		2AF8951C2D6215AC00124D75 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF8951B2D6215AC00124D75 /* MainTabBarController.swift */; };
+		2AF8951E2D62532A00124D75 /* SearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF8951D2D62532A00124D75 /* SearchController.swift */; };
+		2AF895202D62536F00124D75 /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF8951F2D62536F00124D75 /* ProfileController.swift */; };
+		2AF895222D62539800124D75 /* MapCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF895212D62539800124D75 /* MapCoordinator.swift */; };
+		2AF895242D62542D00124D75 /* SearchCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF895232D62542D00124D75 /* SearchCoordinator.swift */; };
+		2AF895262D6254F300124D75 /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF895252D6254F300124D75 /* ProfileCoordinator.swift */; };
+		2AF895282D62624900124D75 /* MainTabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF895272D62624900124D75 /* MainTabBarView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -74,6 +83,15 @@
 		2AD027AF2D56BA7100D914EC /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		2AD027B22D56BB6600D914EC /* RegisterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterController.swift; sourceTree = "<group>"; };
 		2AF895112D5A6AC000124D75 /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
+		2AF895162D62141A00124D75 /* MapController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapController.swift; sourceTree = "<group>"; };
+		2AF895192D6214EC00124D75 /* MainTabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarCoordinator.swift; sourceTree = "<group>"; };
+		2AF8951B2D6215AC00124D75 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		2AF8951D2D62532A00124D75 /* SearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchController.swift; sourceTree = "<group>"; };
+		2AF8951F2D62536F00124D75 /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
+		2AF895212D62539800124D75 /* MapCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapCoordinator.swift; sourceTree = "<group>"; };
+		2AF895232D62542D00124D75 /* SearchCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCoordinator.swift; sourceTree = "<group>"; };
+		2AF895252D6254F300124D75 /* ProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
+		2AF895272D62624900124D75 /* MainTabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -189,7 +207,8 @@
 		2AD027702D512AF000D914EC /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				2AF895132D60A95400124D75 /* HomeBar */,
+				2AF895182D6214A600124D75 /* Tabbar */,
+				2AF895132D60A95400124D75 /* MapBar */,
 				2AF895142D60A95C00124D75 /* SearchBar */,
 				2AF895152D60A96700124D75 /* ProfileBar */,
 			);
@@ -297,16 +316,20 @@
 			path = Register;
 			sourceTree = "<group>";
 		};
-		2AF895132D60A95400124D75 /* HomeBar */ = {
+		2AF895132D60A95400124D75 /* MapBar */ = {
 			isa = PBXGroup;
 			children = (
+				2AF895162D62141A00124D75 /* MapController.swift */,
+				2AF895212D62539800124D75 /* MapCoordinator.swift */,
 			);
-			path = HomeBar;
+			path = MapBar;
 			sourceTree = "<group>";
 		};
 		2AF895142D60A95C00124D75 /* SearchBar */ = {
 			isa = PBXGroup;
 			children = (
+				2AF8951D2D62532A00124D75 /* SearchController.swift */,
+				2AF895232D62542D00124D75 /* SearchCoordinator.swift */,
 			);
 			path = SearchBar;
 			sourceTree = "<group>";
@@ -314,8 +337,20 @@
 		2AF895152D60A96700124D75 /* ProfileBar */ = {
 			isa = PBXGroup;
 			children = (
+				2AF8951F2D62536F00124D75 /* ProfileController.swift */,
+				2AF895252D6254F300124D75 /* ProfileCoordinator.swift */,
 			);
 			path = ProfileBar;
+			sourceTree = "<group>";
+		};
+		2AF895182D6214A600124D75 /* Tabbar */ = {
+			isa = PBXGroup;
+			children = (
+				2AF895192D6214EC00124D75 /* MainTabBarCoordinator.swift */,
+				2AF895272D62624900124D75 /* MainTabBarView.swift */,
+				2AF8951B2D6215AC00124D75 /* MainTabBarController.swift */,
+			);
+			path = Tabbar;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -393,20 +428,29 @@
 			buildActionMask = 2147483647;
 			files = (
 				2AD027B02D56BA7100D914EC /* LoginViewModel.swift in Sources */,
+				2AF895282D62624900124D75 /* MainTabBarView.swift in Sources */,
 				2AF895122D5A6AC000124D75 /* RegisterViewModel.swift in Sources */,
 				2AD0278F2D55675E00D914EC /* UserDefaultsKey.swift in Sources */,
 				2AD0274E2D51107F00D914EC /* Coordinator.swift in Sources */,
 				2AD0274C2D51107F00D914EC /* AppCoordinator.swift in Sources */,
+				2AF895202D62536F00124D75 /* ProfileController.swift in Sources */,
+				2AF8951A2D6214EC00124D75 /* MainTabBarCoordinator.swift in Sources */,
+				2AF8951E2D62532A00124D75 /* SearchController.swift in Sources */,
 				2AD027632D51165700D914EC /* ReusableLabel.swift in Sources */,
 				2AD027862D54E2A400D914EC /* FirstInfoViewModel.swift in Sources */,
 				2AD0275F2D51164600D914EC /* ReusableButton.swift in Sources */,
 				2AD027842D54E22800D914EC /* SecondInfoController.swift in Sources */,
+				2AF895242D62542D00124D75 /* SearchCoordinator.swift in Sources */,
+				2AF8951C2D6215AC00124D75 /* MainTabBarController.swift in Sources */,
 				2AD0279B2D55744D00D914EC /* LoginController.swift in Sources */,
+				2AF895222D62539800124D75 /* MapCoordinator.swift in Sources */,
 				2AD027932D5571D300D914EC /* SecondInfoViewModel.swift in Sources */,
 				2AD027392D510DD100D914EC /* FirstInfoController.swift in Sources */,
 				2AD0276A2D51179F00D914EC /* LayoutExtensions.swift in Sources */,
 				2AD027952D5573FE00D914EC /* AuthCoordinator.swift in Sources */,
+				2AF895172D62141A00124D75 /* MapController.swift in Sources */,
 				2AD027522D51113C00D914EC /* IntroNavigation.swift in Sources */,
+				2AF895262D6254F300124D75 /* ProfileCoordinator.swift in Sources */,
 				2AD027532D51113C00D914EC /* IntroCoordinator.swift in Sources */,
 				2AD027612D51164F00D914EC /* ReusableImage.swift in Sources */,
 				2AD027682D51179800D914EC /* Extensions.swift in Sources */,

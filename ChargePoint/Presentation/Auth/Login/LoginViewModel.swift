@@ -26,4 +26,7 @@ final class LoginViewModel {
     func registerWithEmail() {
         navigation?.goRegister()
     }
+    func goHome(){
+        navigation?.goHome()
+    }
 }

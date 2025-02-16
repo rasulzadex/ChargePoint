@@ -37,8 +37,9 @@ extension AuthCoordinator: AuthNavigation {
     }
     
     func goHome() {
-        //
+            let coor = parentCoordinator as! AppCoordinator
+            UserDefaultsHelper.setInteger(key: UserDefaultsKey.loginType.rawValue, value: 2)
+            children.removeAll()
+            coor.start()
     }
-    
-   
 }

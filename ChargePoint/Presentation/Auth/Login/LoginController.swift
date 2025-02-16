@@ -93,7 +93,7 @@ final class LoginController: BaseController {
         super.viewDidLoad()
     }
     @objc private func loginAction() {
-        print(#function)
+        viewModel.goHome()
     }
     @objc private func mailRegisterClick() {
         viewModel.registerWithEmail()
