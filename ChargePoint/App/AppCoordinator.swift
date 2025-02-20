@@ -33,11 +33,11 @@ final class AppCoordinator: Coordinator {
     fileprivate func showIntro() {
         children.removeAll()
         navigationController.viewControllers = []
-        let auth = IntroCoordinator(navigationController: navigationController)
-        children.append(auth)
+        let intro = IntroCoordinator(navigationController: navigationController)
+        children.append(intro)
         navigationController.isNavigationBarHidden = true
-        auth.parentCoordinator = self
-        auth.start()
+        intro.parentCoordinator = self
+        intro.start()
     }
     fileprivate func showAuth() {
         children.removeAll()

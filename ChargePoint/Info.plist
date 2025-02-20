@@ -2,11 +2,13 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>GPS məlumatlarının götürülməsinə icazə verin</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Giger.otf</string>
-        <string>AmericanCaptain.otf</string>
-        <string>Arch.otf</string>
+		<string>AmericanCaptain.otf</string>
+		<string>Arch.otf</string>
 	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>

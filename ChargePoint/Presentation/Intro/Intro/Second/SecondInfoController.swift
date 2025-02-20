@@ -58,7 +58,6 @@ final class SecondInfoController: BaseController {
     }()
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .evBlue
         UserDefaultsHelper.setInteger(key: UserDefaultsKey.loginType.rawValue, value: 0)
     }
  

@@ -10,12 +10,12 @@ import UIKit
 class MainTabBarView: UITabBar {
     
     private var shapeLayer: CAShapeLayer?
-    var centeredWidth: CGFloat = 0 // for center item detect for curve our shape
+    var centeredWidth: CGFloat = 0
     
     override func draw(_ rect: CGRect) {
         centeredWidth = self.bounds.width / 2
-        self.unselectedItemTintColor = .black
-        self.tintColor = .evGreen
+        self.unselectedItemTintColor = .white
+        self.tintColor = .evTurquoise
         self.addShape()
     }
     private func addShape() {
@@ -44,13 +44,13 @@ class MainTabBarView: UITabBar {
         path.addLine(to: CGPoint(x: centeredWidth - height*2, y: 0))
         path.addCurve(
             to: CGPoint(x: centeredWidth, y: height),
-            controlPoint1: CGPoint(x: centeredWidth - 30, y: 0),
-            controlPoint2: CGPoint(x: centeredWidth - 35, y: height)
+            controlPoint1: CGPoint(x: centeredWidth - 48, y: 0),
+            controlPoint2: CGPoint(x: centeredWidth - 48, y: height)
         )
         path.addCurve(
             to: CGPoint(x: centeredWidth+height*2, y: 0),
-            controlPoint1: CGPoint(x: centeredWidth + 35, y: height),
-            controlPoint2: CGPoint(x: centeredWidth + 30, y: 0)
+            controlPoint1: CGPoint(x: centeredWidth + 48, y: height),
+            controlPoint2: CGPoint(x: centeredWidth + 48, y: 0)
         )
         path.addLine(to: CGPoint(x: self.bounds.width, y: 0))
         path.addLine(to: CGPoint(x: self.bounds.width, y: self.bounds.height))

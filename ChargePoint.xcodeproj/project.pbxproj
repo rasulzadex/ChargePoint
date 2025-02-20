@@ -47,6 +47,34 @@
 		2AF895242D62542D00124D75 /* SearchCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF895232D62542D00124D75 /* SearchCoordinator.swift */; };
 		2AF895262D6254F300124D75 /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF895252D6254F300124D75 /* ProfileCoordinator.swift */; };
 		2AF895282D62624900124D75 /* MainTabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF895272D62624900124D75 /* MainTabBarView.swift */; };
+		2AF8952A2D639F6A00124D75 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF895292D639F6A00124D75 /* MapViewModel.swift */; };
+		2AF8952C2D63AFAF00124D75 /* CustomPinAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF8952B2D63AFAF00124D75 /* CustomPinAnnotation.swift */; };
+		2AF8952E2D63B4F100124D75 /* MapNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF8952D2D63B4F100124D75 /* MapNavigation.swift */; };
+		2AF895322D63B66300124D75 /* DetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF895312D63B66300124D75 /* DetailController.swift */; };
+		2AF895342D63D92D00124D75 /* DetailVIewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF895332D63D92D00124D75 /* DetailVIewModel.swift */; };
+		2AF895392D64BC8900124D75 /* CoreAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF895362D64BC8800124D75 /* CoreAPIManager.swift */; };
+		2AF8953A2D64BC8900124D75 /* CoreAPIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF895372D64BC8900124D75 /* CoreAPIHelper.swift */; };
+		2AF8953B2D64BC8900124D75 /* CoreErrorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF895382D64BC8900124D75 /* CoreErrorModel.swift */; };
+		2AF8953F2D64CB6100124D75 /* TouchAPIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF8953E2D64CB6100124D75 /* TouchAPIHelper.swift */; };
+		2AF895412D64CB6A00124D75 /* TouchAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF895402D64CB6A00124D75 /* TouchAPIService.swift */; };
+		2AF895432D64CB7E00124D75 /* TouchUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF895422D64CB7E00124D75 /* TouchUseCase.swift */; };
+		2AF895462D65D7D100124D75 /* TouchAzDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF895452D65D7D100124D75 /* TouchAzDTO.swift */; };
+		2AF895492D662BA800124D75 /* SocarAPIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF895482D662BA800124D75 /* SocarAPIHelper.swift */; };
+		2AF8954B2D662E7A00124D75 /* SocarAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF8954A2D662E7A00124D75 /* SocarAPIService.swift */; };
+		2AF8954D2D662EAE00124D75 /* SocarUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF8954C2D662EAE00124D75 /* SocarUseCase.swift */; };
+		2AF8954F2D662EC000124D75 /* SocarDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF8954E2D662EC000124D75 /* SocarDTO.swift */; };
+		2AF895522D6640B200124D75 /* GofarAPIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF895512D6640B200124D75 /* GofarAPIHelper.swift */; };
+		2AF895542D66715700124D75 /* GofarDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF895532D66715700124D75 /* GofarDTO.swift */; };
+		2AF895562D66732400124D75 /* GofarUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF895552D66732400124D75 /* GofarUseCase.swift */; };
+		2AF895582D66761200124D75 /* GofarAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF895572D66761200124D75 /* GofarAPIService.swift */; };
+		2AF8955A2D676F8C00124D75 /* VoltDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF895592D676F8C00124D75 /* VoltDTO.swift */; };
+		2AF8955D2D6770B500124D75 /* VoltAPIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF8955C2D6770B500124D75 /* VoltAPIHelper.swift */; };
+		2AF8955F2D6770C000124D75 /* VoltUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF8955E2D6770C000124D75 /* VoltUseCase.swift */; };
+		2AF895612D6772DC00124D75 /* VoltAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF895602D6772DC00124D75 /* VoltAPIService.swift */; };
+		2AF895632D67942100124D75 /* EnrgDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF895622D67942100124D75 /* EnrgDTO.swift */; };
+		2AF895662D6794A100124D75 /* EnrgUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF895652D6794A100124D75 /* EnrgUseCase.swift */; };
+		2AF895682D6794CE00124D75 /* EnrgAPIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF895672D6794CE00124D75 /* EnrgAPIHelper.swift */; };
+		2AF8956A2D6795BF00124D75 /* EnrgAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF895692D6795BF00124D75 /* EnrgAPIService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -92,6 +120,34 @@
 		2AF895232D62542D00124D75 /* SearchCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCoordinator.swift; sourceTree = "<group>"; };
 		2AF895252D6254F300124D75 /* ProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
 		2AF895272D62624900124D75 /* MainTabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarView.swift; sourceTree = "<group>"; };
+		2AF895292D639F6A00124D75 /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
+		2AF8952B2D63AFAF00124D75 /* CustomPinAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPinAnnotation.swift; sourceTree = "<group>"; };
+		2AF8952D2D63B4F100124D75 /* MapNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapNavigation.swift; sourceTree = "<group>"; };
+		2AF895312D63B66300124D75 /* DetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailController.swift; sourceTree = "<group>"; };
+		2AF895332D63D92D00124D75 /* DetailVIewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailVIewModel.swift; sourceTree = "<group>"; };
+		2AF895362D64BC8800124D75 /* CoreAPIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreAPIManager.swift; sourceTree = "<group>"; };
+		2AF895372D64BC8900124D75 /* CoreAPIHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreAPIHelper.swift; sourceTree = "<group>"; };
+		2AF895382D64BC8900124D75 /* CoreErrorModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreErrorModel.swift; sourceTree = "<group>"; };
+		2AF8953E2D64CB6100124D75 /* TouchAPIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchAPIHelper.swift; sourceTree = "<group>"; };
+		2AF895402D64CB6A00124D75 /* TouchAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchAPIService.swift; sourceTree = "<group>"; };
+		2AF895422D64CB7E00124D75 /* TouchUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchUseCase.swift; sourceTree = "<group>"; };
+		2AF895452D65D7D100124D75 /* TouchAzDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchAzDTO.swift; sourceTree = "<group>"; };
+		2AF895482D662BA800124D75 /* SocarAPIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocarAPIHelper.swift; sourceTree = "<group>"; };
+		2AF8954A2D662E7A00124D75 /* SocarAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocarAPIService.swift; sourceTree = "<group>"; };
+		2AF8954C2D662EAE00124D75 /* SocarUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocarUseCase.swift; sourceTree = "<group>"; };
+		2AF8954E2D662EC000124D75 /* SocarDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocarDTO.swift; sourceTree = "<group>"; };
+		2AF895512D6640B200124D75 /* GofarAPIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GofarAPIHelper.swift; sourceTree = "<group>"; };
+		2AF895532D66715700124D75 /* GofarDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GofarDTO.swift; sourceTree = "<group>"; };
+		2AF895552D66732400124D75 /* GofarUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GofarUseCase.swift; sourceTree = "<group>"; };
+		2AF895572D66761200124D75 /* GofarAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GofarAPIService.swift; sourceTree = "<group>"; };
+		2AF895592D676F8C00124D75 /* VoltDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoltDTO.swift; sourceTree = "<group>"; };
+		2AF8955C2D6770B500124D75 /* VoltAPIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoltAPIHelper.swift; sourceTree = "<group>"; };
+		2AF8955E2D6770C000124D75 /* VoltUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoltUseCase.swift; sourceTree = "<group>"; };
+		2AF895602D6772DC00124D75 /* VoltAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoltAPIService.swift; sourceTree = "<group>"; };
+		2AF895622D67942100124D75 /* EnrgDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnrgDTO.swift; sourceTree = "<group>"; };
+		2AF895652D6794A100124D75 /* EnrgUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnrgUseCase.swift; sourceTree = "<group>"; };
+		2AF895672D6794CE00124D75 /* EnrgAPIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnrgAPIHelper.swift; sourceTree = "<group>"; };
+		2AF895692D6795BF00124D75 /* EnrgAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnrgAPIService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +181,7 @@
 			isa = PBXGroup;
 			children = (
 				2AD027542D51137600D914EC /* App */,
+				2AF895352D64BC1E00124D75 /* Network */,
 				2AD027552D5113BF00D914EC /* Presentation */,
 				2AD027662D51177900D914EC /* Helpers */,
 				2AD0275D2D51163200D914EC /* ReusableViews */,
@@ -207,6 +264,7 @@
 		2AD027702D512AF000D914EC /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				2AF895442D65D7C400124D75 /* Models */,
 				2AF895182D6214A600124D75 /* Tabbar */,
 				2AF895132D60A95400124D75 /* MapBar */,
 				2AF895142D60A95C00124D75 /* SearchBar */,
@@ -319,8 +377,10 @@
 		2AF895132D60A95400124D75 /* MapBar */ = {
 			isa = PBXGroup;
 			children = (
-				2AF895162D62141A00124D75 /* MapController.swift */,
 				2AF895212D62539800124D75 /* MapCoordinator.swift */,
+				2AF8952D2D63B4F100124D75 /* MapNavigation.swift */,
+				2AF8952F2D63B58D00124D75 /* Map */,
+				2AF895302D63B64900124D75 /* Detail */,
 			);
 			path = MapBar;
 			sourceTree = "<group>";
@@ -351,6 +411,110 @@
 				2AF8951B2D6215AC00124D75 /* MainTabBarController.swift */,
 			);
 			path = Tabbar;
+			sourceTree = "<group>";
+		};
+		2AF8952F2D63B58D00124D75 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				2AF895162D62141A00124D75 /* MapController.swift */,
+				2AF895292D639F6A00124D75 /* MapViewModel.swift */,
+				2AF8952B2D63AFAF00124D75 /* CustomPinAnnotation.swift */,
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
+		2AF895302D63B64900124D75 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				2AF895312D63B66300124D75 /* DetailController.swift */,
+				2AF895332D63D92D00124D75 /* DetailVIewModel.swift */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
+		2AF895352D64BC1E00124D75 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				2AF8953C2D64C9FD00124D75 /* Core */,
+				2AF895642D67949100124D75 /* Enrg */,
+				2AF895502D66409A00124D75 /* Gofar */,
+				2AF895472D662B8900124D75 /* Socar */,
+				2AF8955B2D6770A100124D75 /* Volt */,
+				2AF8953D2D64CA1300124D75 /* Touch */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		2AF8953C2D64C9FD00124D75 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				2AF895372D64BC8900124D75 /* CoreAPIHelper.swift */,
+				2AF895362D64BC8800124D75 /* CoreAPIManager.swift */,
+				2AF895382D64BC8900124D75 /* CoreErrorModel.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		2AF8953D2D64CA1300124D75 /* Touch */ = {
+			isa = PBXGroup;
+			children = (
+				2AF8953E2D64CB6100124D75 /* TouchAPIHelper.swift */,
+				2AF895402D64CB6A00124D75 /* TouchAPIService.swift */,
+				2AF895422D64CB7E00124D75 /* TouchUseCase.swift */,
+			);
+			path = Touch;
+			sourceTree = "<group>";
+		};
+		2AF895442D65D7C400124D75 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				2AF895452D65D7D100124D75 /* TouchAzDTO.swift */,
+				2AF8954E2D662EC000124D75 /* SocarDTO.swift */,
+				2AF895532D66715700124D75 /* GofarDTO.swift */,
+				2AF895592D676F8C00124D75 /* VoltDTO.swift */,
+				2AF895622D67942100124D75 /* EnrgDTO.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		2AF895472D662B8900124D75 /* Socar */ = {
+			isa = PBXGroup;
+			children = (
+				2AF895482D662BA800124D75 /* SocarAPIHelper.swift */,
+				2AF8954A2D662E7A00124D75 /* SocarAPIService.swift */,
+				2AF8954C2D662EAE00124D75 /* SocarUseCase.swift */,
+			);
+			path = Socar;
+			sourceTree = "<group>";
+		};
+		2AF895502D66409A00124D75 /* Gofar */ = {
+			isa = PBXGroup;
+			children = (
+				2AF895512D6640B200124D75 /* GofarAPIHelper.swift */,
+				2AF895552D66732400124D75 /* GofarUseCase.swift */,
+				2AF895572D66761200124D75 /* GofarAPIService.swift */,
+			);
+			path = Gofar;
+			sourceTree = "<group>";
+		};
+		2AF8955B2D6770A100124D75 /* Volt */ = {
+			isa = PBXGroup;
+			children = (
+				2AF8955C2D6770B500124D75 /* VoltAPIHelper.swift */,
+				2AF8955E2D6770C000124D75 /* VoltUseCase.swift */,
+				2AF895602D6772DC00124D75 /* VoltAPIService.swift */,
+			);
+			path = Volt;
+			sourceTree = "<group>";
+		};
+		2AF895642D67949100124D75 /* Enrg */ = {
+			isa = PBXGroup;
+			children = (
+				2AF895652D6794A100124D75 /* EnrgUseCase.swift */,
+				2AF895672D6794CE00124D75 /* EnrgAPIHelper.swift */,
+				2AF895692D6795BF00124D75 /* EnrgAPIService.swift */,
+			);
+			path = Enrg;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -430,36 +594,64 @@
 				2AD027B02D56BA7100D914EC /* LoginViewModel.swift in Sources */,
 				2AF895282D62624900124D75 /* MainTabBarView.swift in Sources */,
 				2AF895122D5A6AC000124D75 /* RegisterViewModel.swift in Sources */,
+				2AF8953F2D64CB6100124D75 /* TouchAPIHelper.swift in Sources */,
+				2AF895582D66761200124D75 /* GofarAPIService.swift in Sources */,
 				2AD0278F2D55675E00D914EC /* UserDefaultsKey.swift in Sources */,
 				2AD0274E2D51107F00D914EC /* Coordinator.swift in Sources */,
+				2AF8955F2D6770C000124D75 /* VoltUseCase.swift in Sources */,
 				2AD0274C2D51107F00D914EC /* AppCoordinator.swift in Sources */,
+				2AF8954D2D662EAE00124D75 /* SocarUseCase.swift in Sources */,
 				2AF895202D62536F00124D75 /* ProfileController.swift in Sources */,
 				2AF8951A2D6214EC00124D75 /* MainTabBarCoordinator.swift in Sources */,
 				2AF8951E2D62532A00124D75 /* SearchController.swift in Sources */,
 				2AD027632D51165700D914EC /* ReusableLabel.swift in Sources */,
 				2AD027862D54E2A400D914EC /* FirstInfoViewModel.swift in Sources */,
+				2AF8952A2D639F6A00124D75 /* MapViewModel.swift in Sources */,
 				2AD0275F2D51164600D914EC /* ReusableButton.swift in Sources */,
+				2AF895462D65D7D100124D75 /* TouchAzDTO.swift in Sources */,
+				2AF895492D662BA800124D75 /* SocarAPIHelper.swift in Sources */,
+				2AF895392D64BC8900124D75 /* CoreAPIManager.swift in Sources */,
 				2AD027842D54E22800D914EC /* SecondInfoController.swift in Sources */,
+				2AF895662D6794A100124D75 /* EnrgUseCase.swift in Sources */,
 				2AF895242D62542D00124D75 /* SearchCoordinator.swift in Sources */,
+				2AF8953A2D64BC8900124D75 /* CoreAPIHelper.swift in Sources */,
+				2AF895432D64CB7E00124D75 /* TouchUseCase.swift in Sources */,
 				2AF8951C2D6215AC00124D75 /* MainTabBarController.swift in Sources */,
+				2AF895612D6772DC00124D75 /* VoltAPIService.swift in Sources */,
+				2AF8952C2D63AFAF00124D75 /* CustomPinAnnotation.swift in Sources */,
 				2AD0279B2D55744D00D914EC /* LoginController.swift in Sources */,
 				2AF895222D62539800124D75 /* MapCoordinator.swift in Sources */,
+				2AF8954F2D662EC000124D75 /* SocarDTO.swift in Sources */,
 				2AD027932D5571D300D914EC /* SecondInfoViewModel.swift in Sources */,
 				2AD027392D510DD100D914EC /* FirstInfoController.swift in Sources */,
 				2AD0276A2D51179F00D914EC /* LayoutExtensions.swift in Sources */,
+				2AF895522D6640B200124D75 /* GofarAPIHelper.swift in Sources */,
+				2AF8955A2D676F8C00124D75 /* VoltDTO.swift in Sources */,
+				2AF895542D66715700124D75 /* GofarDTO.swift in Sources */,
+				2AF895342D63D92D00124D75 /* DetailVIewModel.swift in Sources */,
 				2AD027952D5573FE00D914EC /* AuthCoordinator.swift in Sources */,
 				2AF895172D62141A00124D75 /* MapController.swift in Sources */,
+				2AF8955D2D6770B500124D75 /* VoltAPIHelper.swift in Sources */,
 				2AD027522D51113C00D914EC /* IntroNavigation.swift in Sources */,
 				2AF895262D6254F300124D75 /* ProfileCoordinator.swift in Sources */,
+				2AF8953B2D64BC8900124D75 /* CoreErrorModel.swift in Sources */,
+				2AF895322D63B66300124D75 /* DetailController.swift in Sources */,
+				2AF8954B2D662E7A00124D75 /* SocarAPIService.swift in Sources */,
+				2AF895412D64CB6A00124D75 /* TouchAPIService.swift in Sources */,
 				2AD027532D51113C00D914EC /* IntroCoordinator.swift in Sources */,
 				2AD027612D51164F00D914EC /* ReusableImage.swift in Sources */,
+				2AF8952E2D63B4F100124D75 /* MapNavigation.swift in Sources */,
 				2AD027682D51179800D914EC /* Extensions.swift in Sources */,
 				2AD0278D2D55674500D914EC /* UserDefaultsHelper.swift in Sources */,
 				2AD0274F2D51107F00D914EC /* AppDelegate.swift in Sources */,
 				2AD027582D5113E100D914EC /* BaseController.swift in Sources */,
+				2AF895562D66732400124D75 /* GofarUseCase.swift in Sources */,
 				2AD027B32D56BB6600D914EC /* RegisterController.swift in Sources */,
+				2AF895682D6794CE00124D75 /* EnrgAPIHelper.swift in Sources */,
 				2AD027972D55741300D914EC /* AuthNavigation.swift in Sources */,
+				2AF895632D67942100124D75 /* EnrgDTO.swift in Sources */,
 				2AD027652D51166100D914EC /* ReusableTextField.swift in Sources */,
+				2AF8956A2D6795BF00124D75 /* EnrgAPIService.swift in Sources */,
 				2AD0274D2D51107F00D914EC /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -604,6 +796,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = QAA7Q9N24Y;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ChargePoint/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -630,6 +823,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = QAA7Q9N24Y;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ChargePoint/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

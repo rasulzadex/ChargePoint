@@ -20,10 +20,20 @@ final class MapCoordinator: Coordinator {
     }
     
     func start() {
-        let controller = MapController()
+        let controller = MapController(viewModel: .init(navigation: self))
         showController(vc: controller)
     }
     
     
 }
-
+extension MapCoordinator: MapNavigation {
+    func dismissController() {
+        navigationController.dismiss(animated: true)
+    }
+    
+    func goDetail() {
+        let controller = DetailController(viewModel: .init(navigation: self))
+        controller.modalPresentationStyle = .custom
+        controller.hidesBottomBarWhenPushed = true
+        navigationController.present(controller, animated: true)    }
+}
