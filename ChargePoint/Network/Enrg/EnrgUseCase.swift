@@ -7,5 +7,5 @@
 
 import Foundation
 protocol EnrgUseCase {
-    func getEnrgStations(completion: @escaping(EnrgDTO?, String?) -> Void)
+    func getEnrgStations(completion: @escaping([EnrgDTO]?, String?) -> Void)
 }

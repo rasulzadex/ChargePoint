@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import Foundation
 
 // MARK: - Response Model
 struct VoltDTO: Codable {
@@ -28,7 +27,7 @@ struct VoltResult: Codable {
     let accessType: String
     let instruction: String?
     let customerNote: String?
-    let openHours: String
+    let openHours: String?
     let connectors: [VoltConnector]
     let images: [VoltImage]?
     let locationStats: VoltLocationStats
@@ -50,7 +49,7 @@ struct VoltConnector: Codable {
     let availableAt: Int?
     let lastSeen: Int?
     let operatorName: String?
-    let maxPower: Int
+    let maxPower: Double
     let emergencyButtonPressed: Bool
     let price: VoltPrice
     let action: String?
@@ -86,8 +85,8 @@ struct VoltPrice: Codable {
 // MARK: - PostPrice Model
 struct VoltPostPrice: Codable {
     let type: String
-    let price: Double?
-    let gracePeriod: Int?
+    let price: VoltPriceValue?
+    let gracePeriod: Double?
     let description: String?
 }
 
@@ -121,4 +120,87 @@ struct VoltConnectorStats: Codable {
 // MARK: - Features Model
 struct VoltFeatures: Codable {
     let parkingDiscount: Bool
+}
+enum VoltPriceValue: Codable {
+    case double(Double)
+    case object([String: Any])
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        
+        // Əgər Double tipindədirsə, decode et
+        if let doubleValue = try? container.decode(Double.self) {
+            self = .double(doubleValue)
+            return
+        }
+
+        // Əgər JSON obyektidirsə (Dictionary formatında)
+        if let dictionaryValue = try? container.decode([String: AnyDecodable].self) {
+            self = .object(dictionaryValue.mapValues { $0.value })
+            return
+        }
+
+        // Əgər heç biri uyğun gəlmirsə, error atırıq
+        throw DecodingError.typeMismatch(VoltPriceValue.self, DecodingError.Context(
+            codingPath: decoder.codingPath,
+            debugDescription: "Price neither Double nor valid dictionary."
+        ))
+    }
+
+    // ✅ `Encodable` üçün xüsusi `encode(to:)` metodu
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.singleValueContainer()
+        
+        switch self {
+        case .double(let value):
+            try container.encode(value)
+        case .object(let dict):
+            try container.encode(dict.mapValues { AnyEncodable(value: $0) })
+        }
+    }
+}
+
+// 🔹 **AnyDecodable** köməkçi struct-ı (Dictionary-də Any işlədə bilmək üçün lazımdır)
+struct AnyDecodable: Decodable {
+    let value: Any
+
+    init(from decoder: Decoder) throws {
+        if let doubleValue = try? decoder.singleValueContainer().decode(Double.self) {
+            self.value = doubleValue
+        } else if let stringValue = try? decoder.singleValueContainer().decode(String.self) {
+            self.value = stringValue
+        } else if let dictValue = try? decoder.singleValueContainer().decode([String: AnyDecodable].self) {
+            self.value = dictValue.mapValues { $0.value }
+        } else if let arrayValue = try? decoder.singleValueContainer().decode([AnyDecodable].self) {
+            self.value = arrayValue.map { $0.value }
+        } else {
+            throw DecodingError.typeMismatch(AnyDecodable.self, DecodingError.Context(
+                codingPath: decoder.codingPath,
+                debugDescription: "Unsupported type in JSON"
+            ))
+        }
+    }
+}
+
+// 🔹 **AnyEncodable** köməkçi struct-ı (Dictionary-də Any encode etmək üçün lazımdır)
+struct AnyEncodable: Encodable {
+    let value: Any
+
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.singleValueContainer()
+        if let doubleValue = value as? Double {
+            try container.encode(doubleValue)
+        } else if let stringValue = value as? String {
+            try container.encode(stringValue)
+        } else if let dictValue = value as? [String: Any] {
+            try container.encode(dictValue.mapValues { AnyEncodable(value: $0) })
+        } else if let arrayValue = value as? [Any] {
+            try container.encode(arrayValue.map { AnyEncodable(value: $0) })
+        } else {
+            throw EncodingError.invalidValue(value, EncodingError.Context(
+                codingPath: encoder.codingPath,
+                debugDescription: "Unsupported type in JSON"
+            ))
+        }
+    }
 }

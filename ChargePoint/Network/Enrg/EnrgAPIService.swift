@@ -8,9 +8,9 @@
 import Foundation
 private let apiService = CoreAPIManager.instance
 final class EnrgAPIService: EnrgUseCase {
-    func getEnrgStations(completion: @escaping (EnrgDTO?, String?) -> Void) {
+    func getEnrgStations(completion: @escaping ([EnrgDTO]?, String?) -> Void) {
         apiService.request(
-            type: EnrgDTO.self,
+            type: [EnrgDTO].self,
             url: EnrgAPIHelper.enrg.endPoint,
             method: .GET,
             header: EnrgAPIHelper.enrg.makeHeader()) { [weak self] result in

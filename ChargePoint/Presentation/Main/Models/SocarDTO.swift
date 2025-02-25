@@ -88,7 +88,7 @@ struct SocarCharger: Codable {
     let landmark: String?
     let model: String?
     let firmwareVersion: SocarFirmwareVersion?
-    let firmwareUpdatedAt: SocarFirmwareUpdatedAt?
+    let firmwareUpdatedAt: String?
     let updateFirmwareVersion, hasOcppIssues: Bool?
     let lastStatusUpdatedAt, updatedAt, oem: String?
 
@@ -230,6 +230,16 @@ enum SocarConnectorStatus: String, Codable {
     case available = "AVAILABLE"
     case charging = "CHARGING"
     case unavailable = "UNAVAILABLE"
+    case faulted = "FAULTED"
+    case preparing = "PREPARING"
+
+    case unknown
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        let rawValue = try container.decode(String.self)
+        self = SocarConnectorStatus(rawValue: rawValue) ?? .unknown
+    }
 }
 
 // MARK: - TouActiveTariff
@@ -580,3 +590,16 @@ class SocarJSONAny: Codable {
             }
     }
 }
+
+//extension SocarResult {
+//    func switchDTOtoModel() -> DetailModel {
+//        .init(
+//            name: name ?? "no name",
+//            address: address ?? "no address",
+//            latitude: latitude ?? 0.0,
+//            longitude: longitude ?? 0.0,
+//            charger: chargers?.first?.connectors?.first?.connectorType?.alias ?? "no info",
+//            status: chargers?.first?.connectors?.first?.status?.rawValue ?? "no info"
+//        )
+//    }
+//}

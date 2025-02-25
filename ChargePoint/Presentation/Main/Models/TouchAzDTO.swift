@@ -12,7 +12,7 @@ struct TouchAzDTO: Codable {
     let data: [TouchData]
 }
 
-// MARK: - Datum
+// MARK: - TouchData
 struct TouchData: Codable {
     let nnChargeStation: Int
     let globalID, formattedAddress, name, latitude: String
@@ -107,4 +107,17 @@ enum TouchFilePath: String, Codable {
     case iconsConnectorTypesGbtACPNG = "/icons/connectorTypes/gbt-ac.png"
     case iconsConnectorTypesGbtDcPNG = "/icons/connectorTypes/gbt-dc.png"
     case iconsConnectorTypesType2PNG = "/icons/connectorTypes/type-2.png"
+}
+
+extension TouchData {
+    func switchDTOtoModel() -> DetailModel {
+        .init(
+            name: name,
+            address: formattedAddress,
+            latitude: Double(latitude) ?? 0.0,
+            longitude: Double(longitude) ?? 0.0,
+            charger: chargePoint.first?.socket.first?.connectorType.files.filePath.rawValue ?? "Unknown",
+            status: chargePoint.first?.status.engName.rawValue ?? "Unknown"
+        )
+    }
 }

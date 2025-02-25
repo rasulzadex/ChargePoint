@@ -7,7 +7,6 @@
 
 import Foundation
 import UIKit.UINavigationController
-import SafariServices
 
 protocol Coordinator: AnyObject {
     var parentCoordinator: Coordinator? {get set}

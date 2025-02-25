@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2A9627CE2D6CAF0F00868E3B /* DetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9627CD2D6CAF0F00868E3B /* DetailModel.swift */; };
 		2AD027392D510DD100D914EC /* FirstInfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD027382D510DD100D914EC /* FirstInfoController.swift */; };
 		2AD0273E2D510DD400D914EC /* ImageAsset.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2AD0273D2D510DD400D914EC /* ImageAsset.xcassets */; };
 		2AD027412D510DD400D914EC /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 2AD027402D510DD400D914EC /* Base */; };
@@ -75,9 +76,25 @@
 		2AF895662D6794A100124D75 /* EnrgUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF895652D6794A100124D75 /* EnrgUseCase.swift */; };
 		2AF895682D6794CE00124D75 /* EnrgAPIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF895672D6794CE00124D75 /* EnrgAPIHelper.swift */; };
 		2AF8956A2D6795BF00124D75 /* EnrgAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF895692D6795BF00124D75 /* EnrgAPIService.swift */; };
+		2AF8956C2D69137000124D75 /* RefreshToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF8956B2D69137000124D75 /* RefreshToken.swift */; };
+		2AF895702D69140600124D75 /* ChargeTokenHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF8956F2D69140600124D75 /* ChargeTokenHelper.swift */; };
+		2AF895722D69141C00124D75 /* ChargeTokenUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF895712D69141C00124D75 /* ChargeTokenUseCase.swift */; };
+		2AF895742D6918AE00124D75 /* ChargeTokenService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF895732D6918AE00124D75 /* ChargeTokenService.swift */; };
+		2AF895762D6921E400124D75 /* ChargeUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF895752D6921E400124D75 /* ChargeUseCase.swift */; };
+		2AF895782D6921F100124D75 /* ChargeDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF895772D6921F100124D75 /* ChargeDTO.swift */; };
+		2AF8957A2D692CA000124D75 /* ChargeAPIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF895792D692CA000124D75 /* ChargeAPIHelper.swift */; };
+		2AF8957C2D692EE000124D75 /* ChargeAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF8957B2D692EE000124D75 /* ChargeAPIService.swift */; };
+		2AF895802D69378900124D75 /* TokTokenUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF8957F2D69378900124D75 /* TokTokenUseCase.swift */; };
+		2AF895822D69383F00124D75 /* TokTokenHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF895812D69383F00124D75 /* TokTokenHelper.swift */; };
+		2AF895842D6938F500124D75 /* TokTokenService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF895832D6938F500124D75 /* TokTokenService.swift */; };
+		2AF895862D693A6E00124D75 /* TokUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF895852D693A6E00124D75 /* TokUseCase.swift */; };
+		2AF895882D693A9A00124D75 /* TokDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF895872D693A9A00124D75 /* TokDTO.swift */; };
+		2AF8958A2D693B6900124D75 /* TokAPIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF895892D693B6900124D75 /* TokAPIHelper.swift */; };
+		2AF8958C2D693C0600124D75 /* TokAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF8958B2D693C0600124D75 /* TokAPIService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2A9627CD2D6CAF0F00868E3B /* DetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailModel.swift; sourceTree = "<group>"; };
 		2AD027312D510DD100D914EC /* ChargePoint.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChargePoint.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AD027382D510DD100D914EC /* FirstInfoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstInfoController.swift; sourceTree = "<group>"; };
 		2AD0273D2D510DD400D914EC /* ImageAsset.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ImageAsset.xcassets; sourceTree = "<group>"; };
@@ -148,6 +165,21 @@
 		2AF895652D6794A100124D75 /* EnrgUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnrgUseCase.swift; sourceTree = "<group>"; };
 		2AF895672D6794CE00124D75 /* EnrgAPIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnrgAPIHelper.swift; sourceTree = "<group>"; };
 		2AF895692D6795BF00124D75 /* EnrgAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnrgAPIService.swift; sourceTree = "<group>"; };
+		2AF8956B2D69137000124D75 /* RefreshToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshToken.swift; sourceTree = "<group>"; };
+		2AF8956F2D69140600124D75 /* ChargeTokenHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChargeTokenHelper.swift; sourceTree = "<group>"; };
+		2AF895712D69141C00124D75 /* ChargeTokenUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChargeTokenUseCase.swift; sourceTree = "<group>"; };
+		2AF895732D6918AE00124D75 /* ChargeTokenService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChargeTokenService.swift; sourceTree = "<group>"; };
+		2AF895752D6921E400124D75 /* ChargeUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChargeUseCase.swift; sourceTree = "<group>"; };
+		2AF895772D6921F100124D75 /* ChargeDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChargeDTO.swift; sourceTree = "<group>"; };
+		2AF895792D692CA000124D75 /* ChargeAPIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChargeAPIHelper.swift; sourceTree = "<group>"; };
+		2AF8957B2D692EE000124D75 /* ChargeAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChargeAPIService.swift; sourceTree = "<group>"; };
+		2AF8957F2D69378900124D75 /* TokTokenUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokTokenUseCase.swift; sourceTree = "<group>"; };
+		2AF895812D69383F00124D75 /* TokTokenHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokTokenHelper.swift; sourceTree = "<group>"; };
+		2AF895832D6938F500124D75 /* TokTokenService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokTokenService.swift; sourceTree = "<group>"; };
+		2AF895852D693A6E00124D75 /* TokUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokUseCase.swift; sourceTree = "<group>"; };
+		2AF895872D693A9A00124D75 /* TokDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokDTO.swift; sourceTree = "<group>"; };
+		2AF895892D693B6900124D75 /* TokAPIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokAPIHelper.swift; sourceTree = "<group>"; };
+		2AF8958B2D693C0600124D75 /* TokAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokAPIService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -436,7 +468,9 @@
 			isa = PBXGroup;
 			children = (
 				2AF8953C2D64C9FD00124D75 /* Core */,
+				2AF8957D2D69374C00124D75 /* Tok */,
 				2AF895642D67949100124D75 /* Enrg */,
+				2AF8956D2D6913E200124D75 /* Charge */,
 				2AF895502D66409A00124D75 /* Gofar */,
 				2AF895472D662B8900124D75 /* Socar */,
 				2AF8955B2D6770A100124D75 /* Volt */,
@@ -473,6 +507,10 @@
 				2AF895532D66715700124D75 /* GofarDTO.swift */,
 				2AF895592D676F8C00124D75 /* VoltDTO.swift */,
 				2AF895622D67942100124D75 /* EnrgDTO.swift */,
+				2AF895772D6921F100124D75 /* ChargeDTO.swift */,
+				2AF895872D693A9A00124D75 /* TokDTO.swift */,
+				2A9627CD2D6CAF0F00868E3B /* DetailModel.swift */,
+				2AF8956B2D69137000124D75 /* RefreshToken.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -515,6 +553,48 @@
 				2AF895692D6795BF00124D75 /* EnrgAPIService.swift */,
 			);
 			path = Enrg;
+			sourceTree = "<group>";
+		};
+		2AF8956D2D6913E200124D75 /* Charge */ = {
+			isa = PBXGroup;
+			children = (
+				2AF8956E2D6913EF00124D75 /* ChargeToken */,
+				2AF895752D6921E400124D75 /* ChargeUseCase.swift */,
+				2AF895792D692CA000124D75 /* ChargeAPIHelper.swift */,
+				2AF8957B2D692EE000124D75 /* ChargeAPIService.swift */,
+			);
+			path = Charge;
+			sourceTree = "<group>";
+		};
+		2AF8956E2D6913EF00124D75 /* ChargeToken */ = {
+			isa = PBXGroup;
+			children = (
+				2AF8956F2D69140600124D75 /* ChargeTokenHelper.swift */,
+				2AF895712D69141C00124D75 /* ChargeTokenUseCase.swift */,
+				2AF895732D6918AE00124D75 /* ChargeTokenService.swift */,
+			);
+			path = ChargeToken;
+			sourceTree = "<group>";
+		};
+		2AF8957D2D69374C00124D75 /* Tok */ = {
+			isa = PBXGroup;
+			children = (
+				2AF8957E2D69375600124D75 /* TokToken */,
+				2AF895852D693A6E00124D75 /* TokUseCase.swift */,
+				2AF895892D693B6900124D75 /* TokAPIHelper.swift */,
+				2AF8958B2D693C0600124D75 /* TokAPIService.swift */,
+			);
+			path = Tok;
+			sourceTree = "<group>";
+		};
+		2AF8957E2D69375600124D75 /* TokToken */ = {
+			isa = PBXGroup;
+			children = (
+				2AF8957F2D69378900124D75 /* TokTokenUseCase.swift */,
+				2AF895812D69383F00124D75 /* TokTokenHelper.swift */,
+				2AF895832D6938F500124D75 /* TokTokenService.swift */,
+			);
+			path = TokToken;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -592,10 +672,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				2AD027B02D56BA7100D914EC /* LoginViewModel.swift in Sources */,
+				2AF895722D69141C00124D75 /* ChargeTokenUseCase.swift in Sources */,
 				2AF895282D62624900124D75 /* MainTabBarView.swift in Sources */,
 				2AF895122D5A6AC000124D75 /* RegisterViewModel.swift in Sources */,
 				2AF8953F2D64CB6100124D75 /* TouchAPIHelper.swift in Sources */,
 				2AF895582D66761200124D75 /* GofarAPIService.swift in Sources */,
+				2AF895742D6918AE00124D75 /* ChargeTokenService.swift in Sources */,
 				2AD0278F2D55675E00D914EC /* UserDefaultsKey.swift in Sources */,
 				2AD0274E2D51107F00D914EC /* Coordinator.swift in Sources */,
 				2AF8955F2D6770C000124D75 /* VoltUseCase.swift in Sources */,
@@ -610,23 +692,32 @@
 				2AD0275F2D51164600D914EC /* ReusableButton.swift in Sources */,
 				2AF895462D65D7D100124D75 /* TouchAzDTO.swift in Sources */,
 				2AF895492D662BA800124D75 /* SocarAPIHelper.swift in Sources */,
+				2AF8958C2D693C0600124D75 /* TokAPIService.swift in Sources */,
 				2AF895392D64BC8900124D75 /* CoreAPIManager.swift in Sources */,
+				2AF895822D69383F00124D75 /* TokTokenHelper.swift in Sources */,
 				2AD027842D54E22800D914EC /* SecondInfoController.swift in Sources */,
+				2AF895762D6921E400124D75 /* ChargeUseCase.swift in Sources */,
 				2AF895662D6794A100124D75 /* EnrgUseCase.swift in Sources */,
 				2AF895242D62542D00124D75 /* SearchCoordinator.swift in Sources */,
 				2AF8953A2D64BC8900124D75 /* CoreAPIHelper.swift in Sources */,
 				2AF895432D64CB7E00124D75 /* TouchUseCase.swift in Sources */,
 				2AF8951C2D6215AC00124D75 /* MainTabBarController.swift in Sources */,
+				2AF895862D693A6E00124D75 /* TokUseCase.swift in Sources */,
+				2AF8956C2D69137000124D75 /* RefreshToken.swift in Sources */,
 				2AF895612D6772DC00124D75 /* VoltAPIService.swift in Sources */,
+				2AF895782D6921F100124D75 /* ChargeDTO.swift in Sources */,
 				2AF8952C2D63AFAF00124D75 /* CustomPinAnnotation.swift in Sources */,
 				2AD0279B2D55744D00D914EC /* LoginController.swift in Sources */,
 				2AF895222D62539800124D75 /* MapCoordinator.swift in Sources */,
 				2AF8954F2D662EC000124D75 /* SocarDTO.swift in Sources */,
+				2AF8957C2D692EE000124D75 /* ChargeAPIService.swift in Sources */,
 				2AD027932D5571D300D914EC /* SecondInfoViewModel.swift in Sources */,
 				2AD027392D510DD100D914EC /* FirstInfoController.swift in Sources */,
 				2AD0276A2D51179F00D914EC /* LayoutExtensions.swift in Sources */,
 				2AF895522D6640B200124D75 /* GofarAPIHelper.swift in Sources */,
 				2AF8955A2D676F8C00124D75 /* VoltDTO.swift in Sources */,
+				2AF895702D69140600124D75 /* ChargeTokenHelper.swift in Sources */,
+				2AF895842D6938F500124D75 /* TokTokenService.swift in Sources */,
 				2AF895542D66715700124D75 /* GofarDTO.swift in Sources */,
 				2AF895342D63D92D00124D75 /* DetailVIewModel.swift in Sources */,
 				2AD027952D5573FE00D914EC /* AuthCoordinator.swift in Sources */,
@@ -639,14 +730,19 @@
 				2AF8954B2D662E7A00124D75 /* SocarAPIService.swift in Sources */,
 				2AF895412D64CB6A00124D75 /* TouchAPIService.swift in Sources */,
 				2AD027532D51113C00D914EC /* IntroCoordinator.swift in Sources */,
+				2AF8957A2D692CA000124D75 /* ChargeAPIHelper.swift in Sources */,
 				2AD027612D51164F00D914EC /* ReusableImage.swift in Sources */,
 				2AF8952E2D63B4F100124D75 /* MapNavigation.swift in Sources */,
 				2AD027682D51179800D914EC /* Extensions.swift in Sources */,
 				2AD0278D2D55674500D914EC /* UserDefaultsHelper.swift in Sources */,
+				2AF895882D693A9A00124D75 /* TokDTO.swift in Sources */,
 				2AD0274F2D51107F00D914EC /* AppDelegate.swift in Sources */,
+				2A9627CE2D6CAF0F00868E3B /* DetailModel.swift in Sources */,
 				2AD027582D5113E100D914EC /* BaseController.swift in Sources */,
 				2AF895562D66732400124D75 /* GofarUseCase.swift in Sources */,
 				2AD027B32D56BB6600D914EC /* RegisterController.swift in Sources */,
+				2AF895802D69378900124D75 /* TokTokenUseCase.swift in Sources */,
+				2AF8958A2D693B6900124D75 /* TokAPIHelper.swift in Sources */,
 				2AF895682D6794CE00124D75 /* EnrgAPIHelper.swift in Sources */,
 				2AD027972D55741300D914EC /* AuthNavigation.swift in Sources */,
 				2AF895632D67942100124D75 /* EnrgDTO.swift in Sources */,

@@ -5,13 +5,14 @@
 //  Created by Javidan on 20.02.25.
 //
 
+
 import Foundation
 enum VoltAPIHelper {
     case volt
 
 
     private var mainPath: String {
-        return "quantum/rest/q/v2/cc/locations?lat1=38.57598&lon1=48.39117&lat2=42.05817&lon2=50.6218&locale=az_VOLT&tags="
+        return "quantum/rest/q/v2/cc/locations?lat1=38.3892&lon1=44.7631&lat2=41.9055&lon2=50.3707&locale=az_VOLT&tags="
     }
     private var baseURL: String {
         return BaseURL.volt.rawValue

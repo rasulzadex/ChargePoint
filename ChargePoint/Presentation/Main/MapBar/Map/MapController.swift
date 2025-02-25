@@ -9,8 +9,8 @@
     import MapKit
     import CoreLocation
 
-    final class MapController: BaseController {
-        
+final class MapController: BaseController {
+    
         let manager = CLLocationManager()
         private var lastUserLocation: CLLocationCoordinate2D?
         private let viewModel: MapViewModel
@@ -43,6 +43,15 @@
             i.addGestureRecognizer(tapGesture)
             return i
         }()
+    private lazy var reloadIcon: ReusableImage = {
+        let i  = ReusableImage(imageName: "r", contentMode: .scaleAspectFill, cornerRadius: 10)
+        i.image = UIImage(systemName: "arrow.clockwise.circle")
+        i.tintColor = .evGreen
+        i.isUserInteractionEnabled = true
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(reloadPoints))
+        i.addGestureRecognizer(tapGesture)
+        return i
+    }()
         private lazy var zoomPlus: ReusableImage = {
             let i  = ReusableImage(imageName: "zoomin", contentMode: .scaleAspectFill, cornerRadius: 10)
             i.image = UIImage(systemName: "plus.circle")
@@ -63,7 +72,7 @@
         }()
         
         private lazy var stackView: UIStackView = {
-            let s = UIStackView(arrangedSubviews: [locationIcon,zoomPlus, zoomMinus])
+            let s = UIStackView(arrangedSubviews: [reloadIcon, locationIcon,zoomPlus, zoomMinus])
             s.alignment = .fill
             s.distribution = .fillEqually
             s.axis = .vertical
@@ -84,13 +93,17 @@
         }
 
         private func getPoints() {
-//            viewModel.getTouchPoints()
-//            viewModel.getSocarPoints()
-//            viewModel.getGofarPoints()
-//            viewModel.getVoltPoints()
+            viewModel.getTouchPoints()
+            viewModel.getSocarPoints()
+            viewModel.getGofarPoints()
+            viewModel.getVoltPoints()
             viewModel.getEnrgPoints()
+            viewModel.getChargePoints()
+            viewModel.getTokPoints()
         }
         
+ 
+    
         private func addTouchStationPins(stations: [TouchData]) {
             var coordinates: [CLLocationCoordinate2D] = []
             for station in stations {
@@ -105,7 +118,7 @@
                     coordinate: coordinate,
                     title: station.name,
                     subtitle: station.formattedAddress,
-                    imageName: "touchAz"
+                    imageName: "newTouchPin"
                 )
                 mapView.addAnnotation(pin)
             }
@@ -126,15 +139,54 @@
                     coordinate: coordinate,
                     title: station.name,
                     subtitle: station.address,
-                    imageName: "voltPin"
+                    imageName: "newVoltPin"
                 )
                 mapView.addAnnotation(pin)
             }
 
             guard !coordinates.isEmpty else { return }
         }
+        private func addChargeStationPins(stations: [ChargeResult]) {
+        var coordinates: [CLLocationCoordinate2D] = []
+        for station in stations {
+            guard let lat = station.latitude, let lon = station.longitude else {
+                print("Invalid coordinates for station: \(station.name)")
+                continue
+            }
+            let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: lon)
+            coordinates.append(coordinate)
+
+            let pin = CustomPinAnnotation(
+                coordinate: coordinate,
+                title: station.name,
+                subtitle: station.address,
+                imageName: "newChargePin"
+            )
+            mapView.addAnnotation(pin)
+        }
+        guard !coordinates.isEmpty else { return }
+    }
+    private func addTokStationPins(stations: [TokResult]) {
+        var coordinates: [CLLocationCoordinate2D] = []
+        for station in stations {
+            guard let lat = station.latitude, let lon = station.longitude else {
+                print("Invalid coordinates for station: \(station.name)")
+                continue
+            }
+            let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: lon)
+            coordinates.append(coordinate)
+            
+            let pin = CustomPinAnnotation(
+                coordinate: coordinate,
+                title: station.name,
+                subtitle: station.address,
+                imageName: "newTokPin"
+            )
+            mapView.addAnnotation(pin)
+        }
+        guard !coordinates.isEmpty else { return }
+    }
         private func addSocarStationPins(stations: [SocarResult]) {
-            print(#function)
             var coordinates: [CLLocationCoordinate2D] = []
             for station in stations {
                 guard let lat = station.latitude, let lon = station.longitude else {
@@ -148,7 +200,27 @@
                     coordinate: coordinate,
                     title: station.name,
                     subtitle: station.address,
-                    imageName: "socarPin"
+                    imageName: "newSocarPin"
+                )
+                mapView.addAnnotation(pin)
+            }
+
+            guard !coordinates.isEmpty else { return }
+        }
+        private func addEnrgStationPins(stations: [EnrgLocation]) {
+            var coordinates: [CLLocationCoordinate2D] = []
+            for station in stations {
+                guard let lat = station.latitude, let lon = station.longitude else {
+                    continue
+                }
+                let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: lon)
+                coordinates.append(coordinate)
+
+                let pin = CustomPinAnnotation(
+                    coordinate: coordinate,
+                    title: "ENRG",
+                    subtitle: "station.address",
+                    imageName: "newEnrgPin"
                 )
                 mapView.addAnnotation(pin)
             }
@@ -175,17 +247,14 @@
                     coordinate: coordinate,
                     title: station.name,
                     subtitle: station.address,
-                    imageName: "gofarPin"
+                    imageName: "newGofarPin"
                 )
                 mapView.addAnnotation(pin)
             }
         }
 
         private func setInitialMapRegion() {
-            guard let location = lastUserLocation else {
-                print("User location not available yet")
-                return
-            }
+            guard let location = lastUserLocation else {return}
             let span = MKCoordinateSpan(latitudeDelta: 2, longitudeDelta: 2)
             let region = MKCoordinateRegion(center: location, span: span)
             mapView.setRegion(region, animated: false)
@@ -204,13 +273,29 @@
             region.span.latitudeDelta /= 2
             region.span.longitudeDelta /= 2
             mapView.setRegion(region, animated: true)    }
-        @objc private func zoomOutAction() {
-                 var region = mapView.region
-                 region.span.latitudeDelta *= 2
-                 region.span.longitudeDelta *= 2
-                 mapView.setRegion(region, animated: true)
-              }
         
+    @objc private func zoomOutAction() {
+        var region = mapView.region
+        let maxLatitudeDelta: CLLocationDegrees = 180.0
+        let maxLongitudeDelta: CLLocationDegrees = 180.0
+        
+        let newLatitudeDelta = region.span.latitudeDelta * 2
+        let newLongitudeDelta = region.span.longitudeDelta * 2
+
+        if newLatitudeDelta <= maxLatitudeDelta && newLongitudeDelta <= maxLongitudeDelta {
+            region.span.latitudeDelta = newLatitudeDelta
+            region.span.longitudeDelta = newLongitudeDelta
+            mapView.setRegion(region, animated: true)
+        }
+    }
+
+        @objc private func showDetail() {
+            viewModel.goDetail()
+        }
+        @objc private func reloadPoints() {
+         getPoints()
+        }
+    
         @objc private func zoomToUserLocation() {
             guard let location = lastUserLocation else {
                 print("User location not available yet")
@@ -243,8 +328,11 @@
                     case .successVolt:
                         self.addVoltStationPins(stations: self.viewModel.voltStations)
                     case .successEnrg:
-                        print("scsdasdasdasdu")
-
+                        self.addEnrgStationPins(stations: self.viewModel.enrgStations)
+                    case .successCharge:
+                        self.addChargeStationPins(stations: self.viewModel.chargeStations)
+                    case .successTok:
+                        self.addTokStationPins(stations: self.viewModel.tokStations)
                     }
                 }
             }
@@ -265,7 +353,7 @@
                 trailing: view.trailingAnchor,
                 padding: .init(bottom: -36, trailing: -16)
             )
-            stackView.anchorSize(CGSize(width: view.frame.width/8, height: view.frame.height/6))
+            stackView.anchorSize(CGSize(width: view.frame.width/8, height: view.frame.height/4))
         }
     }
 
@@ -305,14 +393,12 @@
             if let customAnnotation = annotation as? CustomPinAnnotation {
                 annotationView?.image = UIImage(named: customAnnotation.imageName)?.resize(to: CGSize(width: view.frame.height/12, height: view.frame.height/12))
             }
-
             return annotationView
         }
 
 
         func mapView(_ mapView: MKMapView, didSelect annotation: MKAnnotation) {
-    //        guard annotation is CustomPinAnnotation else { return }
-            viewModel.goDetail()
+           showDetail()
         }
 
     }

@@ -36,8 +36,8 @@ final class MainTabBarCoordinator: Coordinator {
         
         let mapItem = UITabBarItem()
         mapItem.title = "Xəritə"
-        mapItem.image = UIImage(systemName: "map")
-        mapItem.selectedImage = UIImage(systemName: "map.circle.fill")?.resize(to: CGSize(width: 72, height: 72))
+        mapItem.image = UIImage(named: "map")?.resize(to: CGSize(width: 32, height: 32))
+        mapItem.selectedImage = UIImage(named: "circleMap")?.resize(to: CGSize(width: 72, height: 72))?.withRenderingMode(.alwaysOriginal)
         mapNavigationController.tabBarItem = mapItem
         
                 
@@ -48,7 +48,7 @@ final class MainTabBarCoordinator: Coordinator {
         let profileItem = UITabBarItem()
         profileItem.title = "Hesab"
         profileItem.image = UIImage(systemName: "person")
-        profileItem.selectedImage = UIImage(systemName: "person.circle.fill")?.resize(to: CGSize(width: 72, height: 72))
+        profileItem.selectedImage = UIImage(named: "profile")?.resize(to: CGSize(width: 72, height: 72))?.withRenderingMode(.alwaysOriginal)
         profNavigationController.tabBarItem = profileItem
         
         let searchNavigationController = UINavigationController()
@@ -60,7 +60,7 @@ final class MainTabBarCoordinator: Coordinator {
         let searchItem = UITabBarItem()
         searchItem.title = "Axtar"
         searchItem.image = UIImage(systemName: "magnifyingglass")
-        searchItem.selectedImage = UIImage(systemName: "magnifyingglass.circle.fill")?.resize(to: CGSize(width: 72, height: 72))
+        searchItem.selectedImage = UIImage(named: "magnify")?.resize(to: CGSize(width: 72, height: 72))?.withRenderingMode(.alwaysOriginal)
         searchNavigationController.tabBarItem = searchItem
         
         

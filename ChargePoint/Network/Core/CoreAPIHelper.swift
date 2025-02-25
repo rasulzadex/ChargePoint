@@ -1,8 +1,8 @@
 //
 //  CoreAPIHelper.swift
-//  MoovieeAPP
+//  ChargePoint
 //
-//  Created by Javidan on 24.12.24.
+//  Created by Javidan on 13.02.25.
 //
 
 import Foundation
@@ -16,13 +16,14 @@ enum HttpMethods: String {
 }
 
 enum BaseURL: String {
-    case tok = "tok"
+    case tok = "https://app.tridenstechnology.com"
     case touch = "https://api.az.touch-station.com/"
     case enrg = "https://api.evpoint.az/"
     case volt = "https://api.volt-ev.ru/"
     case gofar = "https://gofar.eu.charge.ampeco.tech/"
     case socar = "https://api.yocharge.com/v3/"
-    case chargeaz = "charge"
+    case chargeaz = "https://app.tridenstechnology.com/"
+    case refresh = "https://app.tridenstechnology.com/auth/realms/"
 }
 
 final class CoreAPIHelper {

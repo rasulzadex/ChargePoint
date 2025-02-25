@@ -1,8 +1,8 @@
 //
 //  CoreErrorModel.swift
-//  CountryAPP
+//  ChargePoint
 //
-//  Created by Javidan on 10.12.24.
+//  Created by Javidan on 13.02.25.
 //
 
 import Foundation
