@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2A6DEDF12D70D9A300393961 /* RouteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6DEDF02D70D9A300393961 /* RouteViewModel.swift */; };
+		2A6DEDF32D70DA5400393961 /* RouteController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6DEDF22D70DA5400393961 /* RouteController.swift */; };
+		2A6DEDF52D70FAE200393961 /* ReusableStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6DEDF42D70FAE200393961 /* ReusableStackView.swift */; };
+		2A6DEDF72D71224D00393961 /* DetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6DEDF62D71224D00393961 /* DetailCell.swift */; };
 		2A9627CE2D6CAF0F00868E3B /* DetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9627CD2D6CAF0F00868E3B /* DetailModel.swift */; };
 		2AD027392D510DD100D914EC /* FirstInfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD027382D510DD100D914EC /* FirstInfoController.swift */; };
 		2AD0273E2D510DD400D914EC /* ImageAsset.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2AD0273D2D510DD400D914EC /* ImageAsset.xcassets */; };
@@ -94,6 +98,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2A6DEDF02D70D9A300393961 /* RouteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteViewModel.swift; sourceTree = "<group>"; };
+		2A6DEDF22D70DA5400393961 /* RouteController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteController.swift; sourceTree = "<group>"; };
+		2A6DEDF42D70FAE200393961 /* ReusableStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableStackView.swift; sourceTree = "<group>"; };
+		2A6DEDF62D71224D00393961 /* DetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCell.swift; sourceTree = "<group>"; };
 		2A9627CD2D6CAF0F00868E3B /* DetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailModel.swift; sourceTree = "<group>"; };
 		2AD027312D510DD100D914EC /* ChargePoint.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChargePoint.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AD027382D510DD100D914EC /* FirstInfoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstInfoController.swift; sourceTree = "<group>"; };
@@ -193,6 +201,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2A6DEDEF2D70D58600393961 /* Route */ = {
+			isa = PBXGroup;
+			children = (
+				2A6DEDF02D70D9A300393961 /* RouteViewModel.swift */,
+				2A6DEDF22D70DA5400393961 /* RouteController.swift */,
+			);
+			path = Route;
+			sourceTree = "<group>";
+		};
+		2A6DEDF82D71225300393961 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				2A6DEDF62D71224D00393961 /* DetailCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		2AD027282D510DD100D914EC = {
 			isa = PBXGroup;
 			children = (
@@ -260,6 +285,7 @@
 				2AD0275E2D51164600D914EC /* ReusableButton.swift */,
 				2AD027622D51165700D914EC /* ReusableLabel.swift */,
 				2AD027642D51166100D914EC /* ReusableTextField.swift */,
+				2A6DEDF42D70FAE200393961 /* ReusableStackView.swift */,
 				2AD027602D51164F00D914EC /* ReusableImage.swift */,
 			);
 			path = ReusableViews;
@@ -412,7 +438,9 @@
 				2AF895212D62539800124D75 /* MapCoordinator.swift */,
 				2AF8952D2D63B4F100124D75 /* MapNavigation.swift */,
 				2AF8952F2D63B58D00124D75 /* Map */,
+				2AF895292D639F6A00124D75 /* MapViewModel.swift */,
 				2AF895302D63B64900124D75 /* Detail */,
+				2A6DEDEF2D70D58600393961 /* Route */,
 			);
 			path = MapBar;
 			sourceTree = "<group>";
@@ -449,7 +477,6 @@
 			isa = PBXGroup;
 			children = (
 				2AF895162D62141A00124D75 /* MapController.swift */,
-				2AF895292D639F6A00124D75 /* MapViewModel.swift */,
 				2AF8952B2D63AFAF00124D75 /* CustomPinAnnotation.swift */,
 			);
 			path = Map;
@@ -458,6 +485,7 @@
 		2AF895302D63B64900124D75 /* Detail */ = {
 			isa = PBXGroup;
 			children = (
+				2A6DEDF82D71225300393961 /* Cells */,
 				2AF895312D63B66300124D75 /* DetailController.swift */,
 				2AF895332D63D92D00124D75 /* DetailVIewModel.swift */,
 			);
@@ -692,6 +720,7 @@
 				2AD0275F2D51164600D914EC /* ReusableButton.swift in Sources */,
 				2AF895462D65D7D100124D75 /* TouchAzDTO.swift in Sources */,
 				2AF895492D662BA800124D75 /* SocarAPIHelper.swift in Sources */,
+				2A6DEDF12D70D9A300393961 /* RouteViewModel.swift in Sources */,
 				2AF8958C2D693C0600124D75 /* TokAPIService.swift in Sources */,
 				2AF895392D64BC8900124D75 /* CoreAPIManager.swift in Sources */,
 				2AF895822D69383F00124D75 /* TokTokenHelper.swift in Sources */,
@@ -702,6 +731,7 @@
 				2AF8953A2D64BC8900124D75 /* CoreAPIHelper.swift in Sources */,
 				2AF895432D64CB7E00124D75 /* TouchUseCase.swift in Sources */,
 				2AF8951C2D6215AC00124D75 /* MainTabBarController.swift in Sources */,
+				2A6DEDF72D71224D00393961 /* DetailCell.swift in Sources */,
 				2AF895862D693A6E00124D75 /* TokUseCase.swift in Sources */,
 				2AF8956C2D69137000124D75 /* RefreshToken.swift in Sources */,
 				2AF895612D6772DC00124D75 /* VoltAPIService.swift in Sources */,
@@ -737,6 +767,7 @@
 				2AD0278D2D55674500D914EC /* UserDefaultsHelper.swift in Sources */,
 				2AF895882D693A9A00124D75 /* TokDTO.swift in Sources */,
 				2AD0274F2D51107F00D914EC /* AppDelegate.swift in Sources */,
+				2A6DEDF32D70DA5400393961 /* RouteController.swift in Sources */,
 				2A9627CE2D6CAF0F00868E3B /* DetailModel.swift in Sources */,
 				2AD027582D5113E100D914EC /* BaseController.swift in Sources */,
 				2AF895562D66732400124D75 /* GofarUseCase.swift in Sources */,
@@ -749,6 +780,7 @@
 				2AD027652D51166100D914EC /* ReusableTextField.swift in Sources */,
 				2AF8956A2D6795BF00124D75 /* EnrgAPIService.swift in Sources */,
 				2AD0274D2D51107F00D914EC /* SceneDelegate.swift in Sources */,
+				2A6DEDF52D70FAE200393961 /* ReusableStackView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

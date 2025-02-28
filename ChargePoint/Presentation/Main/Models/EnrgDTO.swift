@@ -74,3 +74,42 @@ extension JSONDecoder {
 }
 
 typealias EnergyDTO = [EnrgDTO]
+
+extension EnrgDTO {
+    func switchDTOtoModel() -> DetailModel {
+        let safeLatitude = location.latitude ?? 0.0
+        let safeLongitude = location.longitude ?? 0.0
+
+        // Bütün `chargers` içindəki bütün `connectors`-ları toplayırıq
+        let allConnectors = chargers.compactMap { $0.connectors }.flatMap { $0 }
+
+        // Əgər heç bir `connector` yoxdursa, default dəyər qaytarırıq
+        guard !allConnectors.isEmpty else {
+            return DetailModel(
+                name: name,
+                address: address,
+                latitude: safeLatitude,
+                longitude: safeLongitude,
+                charger: "No connectors",
+                status: "No status"
+            )
+        }
+
+        // **Bütün `connectors` adlarını və statuslarını toplayırıq**
+        let chargerNames = allConnectors.compactMap { $0.plugType.name }
+        let statuses = allConnectors.compactMap { $0.isAvailable ? "Available" : "Unavailable" }
+
+        // Əgər array boşdursa, default dəyər veririk
+        let safeCharger = chargerNames.isEmpty ? "N/A" : chargerNames.joined(separator: ", ")
+        let safeStatus = statuses.isEmpty ? "N/A" : statuses.joined(separator: ", ")
+
+        return DetailModel(
+            name: name,
+            address: address,
+            latitude: safeLatitude,
+            longitude: safeLongitude,
+            charger: safeCharger,
+            status: safeStatus
+        )
+    }
+}

@@ -4,6 +4,11 @@
 <dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>GPS məlumatlarının götürülməsinə icazə verin</string>
+    <key>LSApplicationQueriesSchemes</key>
+    <array>
+        <string>waze</string>
+        <string>comgooglemaps</string>
+    </array>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Giger.otf</string>

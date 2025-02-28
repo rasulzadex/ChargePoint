@@ -111,13 +111,39 @@ enum TouchFilePath: String, Codable {
 
 extension TouchData {
     func switchDTOtoModel() -> DetailModel {
-        .init(
+        let safeLatitude = Double(latitude) ?? 0.0
+        let safeLongitude = Double(longitude) ?? 0.0
+
+        // Bütün `ChargePoint` içindəki `Socket`-ləri toplayırıq
+        let allSockets = chargePoint.compactMap { $0.socket }.flatMap { $0 }
+
+        // Əgər heç bir `Socket` yoxdursa, default dəyər qaytarırıq
+        guard !allSockets.isEmpty else {
+            return DetailModel(
+                name: name,
+                address: formattedAddress,
+                latitude: safeLatitude,
+                longitude: safeLongitude,
+                charger: "No connectors",
+                status: "No status"
+            )
+        }
+
+        // Bütün `Socket` növlərini (`ConnectorType`) və `Status` adlarını toplayırıq
+        let chargerNames = allSockets.compactMap { $0.connectorType.files.filePath.rawValue }
+        let statuses = chargePoint.compactMap { $0.status.engName.rawValue }
+
+        // Əgər array boşdursa, default dəyər veririk
+        let safeCharger = chargerNames.isEmpty ? "Unknown" : chargerNames.joined(separator: ", ")
+        let safeStatus = statuses.isEmpty ? "Unknown" : statuses.joined(separator: ", ")
+
+        return DetailModel(
             name: name,
             address: formattedAddress,
-            latitude: Double(latitude) ?? 0.0,
-            longitude: Double(longitude) ?? 0.0,
-            charger: chargePoint.first?.socket.first?.connectorType.files.filePath.rawValue ?? "Unknown",
-            status: chargePoint.first?.status.engName.rawValue ?? "Unknown"
+            latitude: safeLatitude,
+            longitude: safeLongitude,
+            charger: safeCharger,
+            status: safeStatus
         )
     }
 }

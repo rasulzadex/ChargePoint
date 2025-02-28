@@ -49,7 +49,7 @@ final class MapViewModel {
     var socarStations: [SocarResult] = []
     var voltStations: [VoltResult] = []
     var gofarStations: [GofarLocation] = []
-    var enrgStations: [EnrgLocation] = []
+    var enrgStations: [EnrgDTO] = []
     var chargeStations: [ChargeResult] = []
     var tokStations: [TokResult] = []
 
@@ -66,12 +66,13 @@ final class MapViewModel {
         self.tokTokenUseCase = TokTokenService()
         self.chargeTokenUseCase = ChargeTokenService()
         self.tokUseCase = TokAPIService()
+        
     }
 
-    
-    func goDetail(){
-        navigation?.goDetail()
+    func goToDetail(with model: DetailModel) {
+        navigation?.goToDetail(with: model)
     }
+
     
     func getTouchPoints() {
         print(#function)
@@ -111,7 +112,7 @@ final class MapViewModel {
             callback?(.loaded)
             if let dtoArray = dtoArray {
                 enrgDTO = dtoArray
-                enrgStations = dtoArray.map { $0.location }
+                enrgStations = dtoArray
                 callback?(.successEnrg)
             }else if let error = error {
                 callback?(.error("Enrg stansiyalarını göstərmək mümkün olmadı", error))

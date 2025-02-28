@@ -13,11 +13,13 @@ class CustomPinAnnotation: NSObject, MKAnnotation {
     var title: String?
     var subtitle: String?
     var imageName: String
+    var dataSource: Any
 
-    init(coordinate: CLLocationCoordinate2D, title: String?, subtitle: String?, imageName: String) {
+    init(coordinate: CLLocationCoordinate2D, title: String?, subtitle: String?, imageName: String, dataSource: Any) {
         self.coordinate = coordinate
         self.title = title
         self.subtitle = subtitle
         self.imageName = imageName
+        self.dataSource = dataSource
     }
 }

@@ -75,17 +75,18 @@ final class DetailController: BaseController {
         s.spacing = 6
         return s
     }()
-    private lazy var totalStack: UIStackView = {
-        let s = UIStackView(arrangedSubviews: [locationStack, addressStack, timeStack])
-        s.alignment = .fill
-        s.distribution = .fillProportionally
-        s.axis = .vertical
-        s.spacing = 0
+    private lazy var totalStack: ReusableStackView = {
+        let s = ReusableStackView(
+            arrangedSubviews: [locationStack, addressStack, timeStack],
+            alignment: .fill,
+            distribution: .fillProportionally,
+            axis: .vertical,
+            spacing: 0
+        )
         return s
     }()
     private lazy var blackView: UIView = {
         let v = UIView()
-        v.backgroundColor = .black.withAlphaComponent(0.5)
         v.isUserInteractionEnabled = true
         let gesture = UITapGestureRecognizer(target: self, action: #selector(dismissController))
         v.addGestureRecognizer(gesture)
@@ -96,7 +97,20 @@ final class DetailController: BaseController {
         v.backgroundColor = .black.withAlphaComponent(0)
         return v
     }()
-    
+    private lazy var connectorCollection: UICollectionView = {
+        let flowLayout = UICollectionViewFlowLayout()
+        let c = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
+        flowLayout.scrollDirection = .horizontal
+        flowLayout.minimumLineSpacing = 20
+        flowLayout.minimumInteritemSpacing = 16
+        flowLayout.itemSize = CGSize(width: view.frame.width/5, height: view.frame.height/5)
+        c.showsHorizontalScrollIndicator = false
+        c.dataSource = self
+        c.delegate = self
+        c.register(cell: DetailCell.self)
+        c.backgroundColor = .clear
+        return c
+    }()
     private lazy var navigationButton: ReusableButton = {
         let b = ReusableButton(title: "Naviqasiya et", buttonColor: .evNavigation) {
             [weak self] in self?.goNavigateClick()
@@ -106,7 +120,17 @@ final class DetailController: BaseController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .clear
+        print(viewModel.detail)
+        print(viewModel.detail.charger.count)
+        print(viewModel.detail.charger)
+        setupUI()
 
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+            self.blackView.backgroundColor = .black.withAlphaComponent(0.6)
+        }
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -118,11 +142,12 @@ final class DetailController: BaseController {
     @objc private func dismissController() {
         transitionFlipFromRight()
         DispatchQueue.main.asyncAfter(deadline: .now()+0.55){
+            self.blackView.alpha = 0
             self.viewModel.dismissController(
             )}
     }
     @objc private func goNavigateClick() {
-        print(#function)
+        viewModel.goToRouteController(model: viewModel.detail)
     }
     private func transitionFlipFromLeft() {
         UIView.transition(with: infoImage, duration: 0.5, options: .transitionFlipFromLeft, animations: nil, completion: nil)
@@ -134,7 +159,12 @@ final class DetailController: BaseController {
     }
     override func configureView() {
         super.configureView()
-        view.addViews(view: [blackView, backview, infoImage, navigationButton, totalStack])
+        view.addViews(view: [blackView, backview, infoImage, navigationButton, totalStack, connectorCollection])
+    }
+    
+    private func setupUI() {
+        locationLabel.text = viewModel.detail.name
+        addressLabel.text = viewModel.detail.address
     }
     override func configureConstraints() {
         super.configureConstraints()
@@ -170,5 +200,26 @@ final class DetailController: BaseController {
         locationStack.anchorSize(CGSize(width: 0, height: 50))
         addressIcon.anchorSize(CGSize(width: 25, height: 0))
         timeIcon.anchorSize(CGSize(width: 25, height: 0))
+        connectorCollection.anchor(
+            top: totalStack.bottomAnchor,
+            leading: totalStack.leadingAnchor,
+            bottom: navigationButton.topAnchor,
+            trailing: totalStack.trailingAnchor,
+            padding: .init(top: 12, leading: 8, bottom: -40, trailing: -8)
+        )
     }
+}
+
+extension DetailController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        viewModel.chargerCount
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let model = viewModel.detail
+        let cell: DetailCell = collectionView.dequeue(for: indexPath)
+        cell.configureCell(model: model)
+        return cell
+    }
+
 }

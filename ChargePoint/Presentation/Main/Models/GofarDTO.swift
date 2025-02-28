@@ -156,3 +156,49 @@ struct GofarTariff: Codable {
         case id, currencyCode, description, additionalInformation, learnMoreUrl, isAdHoc, priceForEnergy, priceForEnergyAtNight, priceForEnergyAtDay, priceForEnergyWhenOptimized, priceForDuration, priceForDurationAtNight, priceForDurationAtDay, pricingPeriodInMinutes, durationFeeGracePeriod, priceForIdle, priceForIdleAtNight, priceForIdleAtDay, dayTariffStart, nightTariffStart, connectionFee, connectionFeeGracePeriodMinutes, connectionFeeGracePeriodKwh, minPrice, priceForSession, regularUseMinutes, priceType, powerLevels, idleFeeGracePeriodMinutes, optimisedTariffStart, optimisedTariffEnd, durationFeeFrom, durationFeeTo, defaultChargeByTime, defaultTopUpKwh, optimisedLabel, offPeakHoursLabel, peakHoursLabel, referenceRange, standardTariffIdleFee, standardTariffDurationFee, standardTariffFeePerKwh, standardTariffDurationLastUnit, pricePeriods
     }
 }
+extension GofarLocation {
+    func switchDTOtoModel() -> DetailModel? {
+        let locationComponents = location.split(separator: ",")
+
+        guard locationComponents.count == 2,
+              let latitude = Double(locationComponents[0]),
+              let longitude = Double(locationComponents[1]) else {
+            return nil
+        }
+
+        // Bütün `zones` içindəki `evses`-lərin `connectors`-larını toplayırıq
+        let allConnectors = zones.compactMap { $0.evses }
+            .flatMap { $0 }
+            .compactMap { $0.connectors }
+            .flatMap { $0 }
+
+        // Əgər heç bir `connector` yoxdursa, default dəyər qaytarırıq
+        guard !allConnectors.isEmpty else {
+            return DetailModel(
+                name: name,
+                address: address,
+                latitude: latitude,
+                longitude: longitude,
+                charger: "No connectors",
+                status: "No status"
+            )
+        }
+
+        // Bütün `connector` adlarını və statuslarını toplayırıq
+        let chargerNames = allConnectors.compactMap { $0.name }
+        let statuses = allConnectors.compactMap { $0.status }
+
+        // Əgər array boşdursa, default dəyər veririk
+        let safeCharger = chargerNames.isEmpty ? "Unknown" : chargerNames.joined(separator: ", ")
+        let safeStatus = statuses.isEmpty ? "Unknown" : statuses.joined(separator: ", ")
+
+        return DetailModel(
+            name: name,
+            address: address,
+            latitude: latitude,
+            longitude: longitude,
+            charger: safeCharger,
+            status: safeStatus
+        )
+    }
+}

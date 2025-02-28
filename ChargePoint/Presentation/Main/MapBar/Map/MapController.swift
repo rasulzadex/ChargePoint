@@ -71,12 +71,14 @@ final class MapController: BaseController {
             return i
         }()
         
-        private lazy var stackView: UIStackView = {
-            let s = UIStackView(arrangedSubviews: [reloadIcon, locationIcon,zoomPlus, zoomMinus])
-            s.alignment = .fill
-            s.distribution = .fillEqually
-            s.axis = .vertical
-            s.spacing = 6
+        private lazy var stackView: ReusableStackView = {
+            let s = ReusableStackView(
+                arrangedSubviews: [reloadIcon, locationIcon, zoomPlus, zoomMinus],
+                alignment: .fill,
+                distribution: .fillEqually,
+                axis: .vertical,
+                spacing: 6
+            )
             return s
         }()
         
@@ -101,8 +103,6 @@ final class MapController: BaseController {
             viewModel.getChargePoints()
             viewModel.getTokPoints()
         }
-        
- 
     
         private func addTouchStationPins(stations: [TouchData]) {
             var coordinates: [CLLocationCoordinate2D] = []
@@ -116,9 +116,10 @@ final class MapController: BaseController {
 
                 let pin = CustomPinAnnotation(
                     coordinate: coordinate,
-                    title: station.name,
-                    subtitle: station.formattedAddress,
-                    imageName: "newTouchPin"
+                    title: "Touch EDM",
+                    subtitle: station.name,
+                    imageName: "newTouchPin",
+                    dataSource: station
                 )
                 mapView.addAnnotation(pin)
             }
@@ -137,9 +138,10 @@ final class MapController: BaseController {
 
                 let pin = CustomPinAnnotation(
                     coordinate: coordinate,
-                    title: station.name,
-                    subtitle: station.address,
-                    imageName: "newVoltPin"
+                    title: "Volt EDM",
+                    subtitle: station.name,
+                    imageName: "newVoltPin",
+                    dataSource: station
                 )
                 mapView.addAnnotation(pin)
             }
@@ -158,9 +160,10 @@ final class MapController: BaseController {
 
             let pin = CustomPinAnnotation(
                 coordinate: coordinate,
-                title: station.name,
-                subtitle: station.address,
-                imageName: "newChargePin"
+                title: "Charge EDM",
+                subtitle: station.name,
+                imageName: "newChargePin",
+                dataSource: station
             )
             mapView.addAnnotation(pin)
         }
@@ -178,9 +181,10 @@ final class MapController: BaseController {
             
             let pin = CustomPinAnnotation(
                 coordinate: coordinate,
-                title: station.name,
-                subtitle: station.address,
-                imageName: "newTokPin"
+                title: "Tok EDM",
+                subtitle: station.name,
+                imageName: "newTokPin",
+                dataSource: station
             )
             mapView.addAnnotation(pin)
         }
@@ -198,35 +202,39 @@ final class MapController: BaseController {
 
                 let pin = CustomPinAnnotation(
                     coordinate: coordinate,
-                    title: station.name,
-                    subtitle: station.address,
-                    imageName: "newSocarPin"
+                    title: "Socar YDM",
+                    subtitle: station.name,
+                    imageName: "newSocarPin",
+                    dataSource: station
                 )
                 mapView.addAnnotation(pin)
             }
 
             guard !coordinates.isEmpty else { return }
         }
-        private func addEnrgStationPins(stations: [EnrgLocation]) {
-            var coordinates: [CLLocationCoordinate2D] = []
-            for station in stations {
-                guard let lat = station.latitude, let lon = station.longitude else {
-                    continue
-                }
-                let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: lon)
-                coordinates.append(coordinate)
-
-                let pin = CustomPinAnnotation(
-                    coordinate: coordinate,
-                    title: "ENRG",
-                    subtitle: "station.address",
-                    imageName: "newEnrgPin"
-                )
-                mapView.addAnnotation(pin)
+    private func addEnrgStationPins(stations: [EnrgDTO]) {
+        var coordinates: [CLLocationCoordinate2D] = []
+        for station in stations {
+            guard let lat = station.location.latitude, let lon = station.location.longitude else {
+                continue
             }
+            let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: lon)
+            coordinates.append(coordinate)
 
-            guard !coordinates.isEmpty else { return }
+            // Now create a pin using EnrgDTO
+            let pin = CustomPinAnnotation(
+                coordinate: coordinate,
+                title: "ENRG EDM",
+                subtitle: "address",  // Replace with actual address
+                imageName: "newEnrgPin",
+                dataSource: station // Pass the EnrgDTO to the pin
+            )
+            mapView.addAnnotation(pin)
         }
+
+        guard !coordinates.isEmpty else { return }
+    }
+
 
         private func addGofarStationPins(stations: [GofarLocation]) {
             var coordinates: [CLLocationCoordinate2D] = []
@@ -236,7 +244,6 @@ final class MapController: BaseController {
                 guard locationComponents.count == 2,
                       let lat = Double(locationComponents[0]),
                       let lon = Double(locationComponents[1]) else {
-                    print("Invalid coordinates for station: \(station.name)")
                     continue
                 }
                 
@@ -245,9 +252,10 @@ final class MapController: BaseController {
 
                 let pin = CustomPinAnnotation(
                     coordinate: coordinate,
-                    title: station.name,
-                    subtitle: station.address,
-                    imageName: "newGofarPin"
+                    title: "Gofar EDM",
+                    subtitle: station.name,
+                    imageName: "newGofarPin",
+                    dataSource: station
                 )
                 mapView.addAnnotation(pin)
             }
@@ -289,9 +297,7 @@ final class MapController: BaseController {
         }
     }
 
-        @objc private func showDetail() {
-            viewModel.goDetail()
-        }
+       
         @objc private func reloadPoints() {
          getPoints()
         }
@@ -397,8 +403,36 @@ final class MapController: BaseController {
         }
 
 
-        func mapView(_ mapView: MKMapView, didSelect annotation: MKAnnotation) {
-           showDetail()
-        }
+            func mapView(_ mapView: MKMapView, didSelect annotation: MKAnnotation) {
+                guard let customAnnotation = annotation as? CustomPinAnnotation else { return }
+                print("Selected annotation of type: \(type(of: customAnnotation.dataSource))")
+
+                switch customAnnotation.dataSource {
+                case let socarStation as SocarResult:
+                    viewModel.goToDetail(with: socarStation.switchDTOtoModel())
+
+                case let touchStation as TouchData:
+                    viewModel.goToDetail(with: touchStation.switchDTOtoModel())
+
+                case let voltStation as VoltResult:
+                    viewModel.goToDetail(with: voltStation.switchDTOtoDetail())
+
+                case let gofarStation as GofarLocation:
+                    guard let detailModel = gofarStation.switchDTOtoModel() else {return}
+                    viewModel.goToDetail(with: detailModel)
+
+                case let enrgStation as EnrgDTO:
+                    viewModel.goToDetail(with: enrgStation.switchDTOtoModel())
+
+                case let chargeStation as ChargeResult:
+                    viewModel.goToDetail(with: chargeStation.switchDTOtoDetail())
+
+                case let tokStation as TokResult:
+                    viewModel.goToDetail(with: tokStation.switchDTOtoDetail())
+                default:
+                    print("Unknown station type selected.")
+                }
+            }
+        
 
     }

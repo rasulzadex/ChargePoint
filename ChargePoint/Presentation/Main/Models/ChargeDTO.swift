@@ -305,3 +305,40 @@ enum ChargeElectricCurrentType: String, Codable {
 struct ChargeLocation: Codable {
     let latitude, longitude: Double
 }
+
+extension ChargeResult {
+    func switchDTOtoDetail() -> DetailModel {
+        let safeLatitude = latitude ?? 0.0
+        let safeLongitude = longitude ?? 0.0
+
+        // **Bütün `connectors` adlarını və statuslarını toplayırıq**
+        let chargerNames = connectors.compactMap { $0.type.rawValue }
+        let statuses = connectors.compactMap { connector in
+            switch connector.status {
+            case .available:
+                return "Available"
+            case .charging:
+                return "Charging"
+            case .finishing:
+                return "Finishing"
+            case .unavailable:
+                return "Unavailable"
+            case .unknown(let value):
+                return value
+            }
+        }
+
+        // Əgər array boşdursa, default dəyər veririk
+        let safeCharger = chargerNames.isEmpty ? "No connectors" : chargerNames.joined(separator: ", ")
+        let safeStatus = statuses.isEmpty ? "No status" : statuses.joined(separator: ", ")
+
+        return DetailModel(
+            name: name,
+            address: address,
+            latitude: safeLatitude,
+            longitude: safeLongitude,
+            charger: safeCharger,
+            status: safeStatus
+        )
+    }
+}

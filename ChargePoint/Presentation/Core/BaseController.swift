@@ -9,11 +9,7 @@ import UIKit
 
 class BaseController: UIViewController {
 
-    private lazy var authBG: ReusableImage = {
-        let i = ReusableImage(imageName: "patternBG", contentMode: .scaleAspectFill, cornerRadius: 0)
-        i.alpha = 0
-        return i
-    }()
+    
        
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,11 +19,10 @@ class BaseController: UIViewController {
     }
     
     open func configureView() {
-        view.addViews(view: [authBG])
+
     }
     
     open func configureConstraints() {
-        authBG.fillSuperview()
     }
     
 

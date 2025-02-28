@@ -352,27 +352,26 @@ enum SocarState: String, Codable {
 // MARK: - Encode/decode helpers
 
 class SocarJSONNull: Codable, Hashable {
-
     public static func == (lhs: SocarJSONNull, rhs: SocarJSONNull) -> Bool {
-            return true
+        return true
     }
 
-    public var hashValue: Int {
-            return 0
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(0) // Əvəllər `hashValue`-də `0` istifadə olunurdu, indi isə buraya əlavə edirik
     }
 
     public init() {}
 
     public required init(from decoder: Decoder) throws {
-            let container = try decoder.singleValueContainer()
-            if !container.decodeNil() {
-                    throw DecodingError.typeMismatch(SocarJSONNull.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Wrong type for JSONNull"))
-            }
+        let container = try decoder.singleValueContainer()
+        if !container.decodeNil() {
+            throw DecodingError.typeMismatch(SocarJSONNull.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Wrong type for JSONNull"))
+        }
     }
 
     public func encode(to encoder: Encoder) throws {
-            var container = encoder.singleValueContainer()
-            try container.encodeNil()
+        var container = encoder.singleValueContainer()
+        try container.encodeNil()
     }
 }
 
@@ -591,15 +590,40 @@ class SocarJSONAny: Codable {
     }
 }
 
-//extension SocarResult {
-//    func switchDTOtoModel() -> DetailModel {
-//        .init(
-//            name: name ?? "no name",
-//            address: address ?? "no address",
-//            latitude: latitude ?? 0.0,
-//            longitude: longitude ?? 0.0,
-//            charger: chargers?.first?.connectors?.first?.connectorType?.alias ?? "no info",
-//            status: chargers?.first?.connectors?.first?.status?.rawValue ?? "no info"
-//        )
-//    }
-//}
+extension SocarResult {
+    func switchDTOtoModel() -> DetailModel {
+        let safeName = name ?? "no name"
+        let safeAddress = address ?? "no address"
+        let safeLatitude = latitude ?? 0.0
+        let safeLongitude = longitude ?? 0.0
+
+        let allConnectors = chargers?.compactMap { $0.connectors }.flatMap { $0 } ?? []
+
+        guard !allConnectors.isEmpty else {
+            return DetailModel(
+                name: safeName,
+                address: safeAddress,
+                latitude: safeLatitude,
+                longitude: safeLongitude,
+                charger: "No connectors",
+                status: "No status"
+            )
+        }
+
+        let chargerNames = allConnectors.compactMap { $0.connectorType?.alias?.rawValue }
+        let statuses = allConnectors.compactMap { $0.status?.rawValue }
+
+        let safeCharger = chargerNames.isEmpty ? "no info" : chargerNames.joined(separator: ", ")
+        let safeStatus = statuses.isEmpty ? "no info" : statuses.joined(separator: ", ")
+
+        return DetailModel(
+            name: safeName,
+            address: safeAddress,
+            latitude: safeLatitude,
+            longitude: safeLongitude,
+            charger: safeCharger,
+            status: safeStatus
+        )
+    }
+}
+
