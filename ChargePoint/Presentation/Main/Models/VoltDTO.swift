@@ -22,7 +22,7 @@ struct VoltResult: Codable {
     let name: String
     let latitude: Double?
     let longitude: Double?
-    let country: String
+    let country: String?
     let address: String
     let accessType: String
     let instruction: String?

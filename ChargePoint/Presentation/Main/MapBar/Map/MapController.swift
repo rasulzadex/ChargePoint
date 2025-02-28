@@ -221,13 +221,12 @@ final class MapController: BaseController {
             let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: lon)
             coordinates.append(coordinate)
 
-            // Now create a pin using EnrgDTO
             let pin = CustomPinAnnotation(
                 coordinate: coordinate,
                 title: "ENRG EDM",
-                subtitle: "address",  // Replace with actual address
+                subtitle: station.address,
                 imageName: "newEnrgPin",
-                dataSource: station // Pass the EnrgDTO to the pin
+                dataSource: station
             )
             mapView.addAnnotation(pin)
         }

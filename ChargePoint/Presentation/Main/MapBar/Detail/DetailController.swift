@@ -152,10 +152,12 @@ final class DetailController: BaseController {
     private func transitionFlipFromLeft() {
         UIView.transition(with: infoImage, duration: 0.5, options: .transitionFlipFromLeft, animations: nil, completion: nil)
         UIView.transition(with: totalStack, duration: 0.5, options: .transitionFlipFromLeft, animations: nil, completion: nil)
+        UIView.transition(with: connectorCollection, duration: 0.5, options: .transitionFlipFromLeft, animations: nil, completion: nil)
     }
     private func transitionFlipFromRight() {
         UIView.transition(with: infoImage, duration: 0.5, options: .transitionFlipFromRight, animations: nil, completion: nil)
         UIView.transition(with: totalStack, duration: 0.5, options: .transitionFlipFromLeft, animations: nil, completion: nil)
+        UIView.transition(with: connectorCollection, duration: 0.5, options: .transitionFlipFromLeft, animations: nil, completion: nil)
     }
     override func configureView() {
         super.configureView()
@@ -210,16 +212,17 @@ final class DetailController: BaseController {
     }
 }
 
-extension DetailController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension DetailController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        viewModel.chargerCount
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let model = viewModel.detail
-        let cell: DetailCell = collectionView.dequeue(for: indexPath)
-        cell.configureCell(model: model)
-        return cell
+        return viewModel.detail.connectors.count
     }
 
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DetailCell", for: indexPath) as! DetailCell
+        let connector = viewModel.detail.connectors[indexPath.item]
+        let status = indexPath.item < viewModel.detail.statuses.count ? viewModel.detail.statuses[indexPath.item] : "UNKNOWN"
+        
+        cell.configureCell(connector: connector, status: status)
+        return cell
+    }
 }

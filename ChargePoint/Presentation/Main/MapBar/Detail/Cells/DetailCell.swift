@@ -8,6 +8,7 @@
 import UIKit
 
 class DetailCell: UICollectionViewCell {
+    
     private lazy var connectorType: ReusableImage = {
         let i = ReusableImage(imageName: "logo", contentMode: .scaleAspectFit)
         return i
@@ -33,6 +34,8 @@ class DetailCell: UICollectionViewCell {
             numberOfLines: 0,
             cornerRadius: 10
         )
+        l.layer.borderColor = UIColor.evBlue.cgColor
+        l.layer.borderWidth = 1
         l.backgroundColor = .red
         return l
     }()
@@ -60,55 +63,74 @@ class DetailCell: UICollectionViewCell {
     private func configureConstraints() {
         stackVIew.fillSuperview()
         connectorType.anchorSize(CGSize(width: 0, height: frame.height/1.7))
-        statusLabel.anchorSize(CGSize(width: 0, height: frame.height/5))
+        statusLabel.anchorSize(CGSize(width: 0, height: frame.height/5.5))
 
     }
   
-    func configureCell(model: DetailModel) {
-        let connectors = model.charger.split(separator: ",").map { $0.trimmingCharacters(in: .whitespaces) }
-
-         // 2. Uyğun gələn ilk şəkli tapmaq üçün dəyişən
-         var selectedImage: UIImage? = nil
-         
-         // 3. Connector-ləri dövrə salırıq və ilk uyğun gələn şəkli təyin edirik
-         for connector in connectors {
-             if connector.contains("GB/T") {
-                 selectedImage = UIImage(named: "gbt") // GB/T üçün "A" şəkli
-                 break
-             } else if connector.contains("Type2") {
-                 selectedImage = UIImage(named: "type2") // Type2 üçün "B" şəkli
-                 break
-             } else if connector.contains("CCS") {
-                 selectedImage = UIImage(named: "ccs") // CCS üçün "C" şəkli
-                 break
-             }
-         }
-
-         // 4. Əgər heç bir uyğunluq tapılmayıbsa, default şəkil istifadə et
-         connectorType.image = selectedImage ?? UIImage(named: "logo")
-
-         // 5. Charger-ləri `titleLabel`-də göstəririk (bütün connector-ləri yazmaq üçün)
-         titleLabel.text = connectors.joined(separator: ", ")
-
-         // 6. Statusları parçalayırıq və ilk statusu götürürük
-         let statuses = model.status.split(separator: ",").map { $0.trimmingCharacters(in: .whitespaces) }
-         statusLabel.text = statuses.first ?? "Naməlum"
-
-        if let firstStatus = statuses.first {
-            switch firstStatus {
-            case "AVAILABLE":
-                statusLabel.backgroundColor = .green
-            case "UNAVAILABLE":
-                statusLabel.backgroundColor = .orange
-            case "OUT_OF_SERVICE":
-                statusLabel.backgroundColor = .red
-            default:
-                statusLabel.backgroundColor = .gray
-            }
-        } else {
-            statusLabel.backgroundColor = .gray
+    func configureCell(connector: String, status: String) {
+            titleLabel.text = getConnectorName(connector: connector)
+            connectorType.image = getConnectorImage(connector: connector)
+            statusLabel.text = getStatusName(status: status)
+            statusLabel.backgroundColor = getStatusColor(status: status)
+        }
+    private func getConnectorName(connector:String) -> String{
+        switch connector {
+        case "GB/T", "c_gbt", "GB/T (Fast)": return "GB/T"
+        case "GB/T DC", "GBT_DC", "GB/T • DC", "/icons/connectorTypes/gbt-dc.png" : return "GB/T DC"
+        case "GB/T • AC": return "GB/T AC"
+        case "c_ccs_2", "CCS2_PLUG", "CCS2 • DC", "CCS 2", "/icons/connectorTypes/ccs-2.png":
+            return "CCS 2"
+        case "Type2", "Type 2 (Mennekes) • AC", "/icons/connectorTypes/type-2.png" : return "Type 2"
+        case "c_type_1" : return "Type 1"
+        default: return "Naməlum"
         }
     }
+        
+        private func getConnectorImage(connector: String) -> UIImage? {
+            switch titleLabel.text {
+            case "GB/T", "GB/T DC", "GB/T AC":
+                return UIImage(named: "gbt")
+            case "Type 2":
+                return UIImage(named: "type2")
+            case "CCS 2":
+                return UIImage(named: "ccs")
+            case "Type 1": return UIImage(named: "type1")
+            default: return UIImage(named: "logo")
+            }
+            
+            
+        }
 
+    func getStatusName(status: String) -> String {
+        switch status {
+        case "AVAILABLE", "Available", "available", "active":
+            return "Uyğundur"
+        case "CHARGING", "IN_USE":
+            return "Məşğuldur"
+        case "OUT_OF_SERVICE", "UNAVAILABLE", "Unavailable":
+            return "İşləmir"
+        case "preparing": return "Hazırlanır"
+        case "MAINTENANCE": return "Təmirdədir"
+        case "unknown", "Unknown", "UNKNOWN", "No status":
+            return "Bilinmir"
+        default:
+            return "Naməlum"
+        }
+    }
+        private func getStatusColor(status: String) -> UIColor {
+            switch status {
+            case "AVAILABLE", "Available", "available", "active":
+                return .evNavigation
+            case "CHARGING", "IN_USE":
+                return .orange
+            case "OUT_OF_SERVICE", "UNAVAILABLE", "Unavailable":
+                return .red
+            case "preparing", "MAINTENANCE": return .yellow
+            case "unknown", "Unknown", "UNKNOWN", "No status":
+                return .blue
+            default:
+                return .gray
+            }
+        }
     
 }
