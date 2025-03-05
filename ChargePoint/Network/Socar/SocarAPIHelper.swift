@@ -27,7 +27,7 @@ enum SocarAPIHelper {
     func makeHeader() -> [String:String] {
         return [
                 "accept": "application/json, text/plain, */*",
-                "Authorization" : "Token ckimt9-8c50184e5d7fe93087bcb7437fc205e9",
+                "Authorization" : "Token clfajm-a6e78730ced333173533a044601312b5",
                 "Content-Type" : "application/json",
                 "Accept-Encoding" : "gzip",
                 "User-Agent" : "okhttp/4.9.2",

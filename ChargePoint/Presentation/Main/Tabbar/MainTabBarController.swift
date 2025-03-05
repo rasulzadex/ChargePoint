@@ -14,6 +14,7 @@ final class MainTabBarController: UITabBarController {
         super.viewDidLoad()
         self.delegate = self
         setupTabBar()
+
     }
     override func viewDidAppear(_ animated: Bool) {
         self.selectedIndex = 1

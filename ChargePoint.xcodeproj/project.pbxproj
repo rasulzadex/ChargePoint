@@ -12,6 +12,9 @@
 		2A6DEDF52D70FAE200393961 /* ReusableStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6DEDF42D70FAE200393961 /* ReusableStackView.swift */; };
 		2A6DEDF72D71224D00393961 /* DetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6DEDF62D71224D00393961 /* DetailCell.swift */; };
 		2A9627CE2D6CAF0F00868E3B /* DetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9627CD2D6CAF0F00868E3B /* DetailModel.swift */; };
+		2ACE3E5A2D72B9A700EF137A /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACE3E592D72B9A700EF137A /* SearchViewModel.swift */; };
+		2ACE3E5C2D72BA7600EF137A /* SearchNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACE3E5B2D72BA7600EF137A /* SearchNavigation.swift */; };
+		2ACE3E602D72BD7E00EF137A /* ResultController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACE3E5F2D72BD7E00EF137A /* ResultController.swift */; };
 		2AD027392D510DD100D914EC /* FirstInfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD027382D510DD100D914EC /* FirstInfoController.swift */; };
 		2AD0273E2D510DD400D914EC /* ImageAsset.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2AD0273D2D510DD400D914EC /* ImageAsset.xcassets */; };
 		2AD027412D510DD400D914EC /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 2AD027402D510DD400D914EC /* Base */; };
@@ -103,6 +106,9 @@
 		2A6DEDF42D70FAE200393961 /* ReusableStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableStackView.swift; sourceTree = "<group>"; };
 		2A6DEDF62D71224D00393961 /* DetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCell.swift; sourceTree = "<group>"; };
 		2A9627CD2D6CAF0F00868E3B /* DetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailModel.swift; sourceTree = "<group>"; };
+		2ACE3E592D72B9A700EF137A /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
+		2ACE3E5B2D72BA7600EF137A /* SearchNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchNavigation.swift; sourceTree = "<group>"; };
+		2ACE3E5F2D72BD7E00EF137A /* ResultController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultController.swift; sourceTree = "<group>"; };
 		2AD027312D510DD100D914EC /* ChargePoint.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChargePoint.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AD027382D510DD100D914EC /* FirstInfoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstInfoController.swift; sourceTree = "<group>"; };
 		2AD0273D2D510DD400D914EC /* ImageAsset.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ImageAsset.xcassets; sourceTree = "<group>"; };
@@ -216,6 +222,23 @@
 				2A6DEDF62D71224D00393961 /* DetailCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		2ACE3E5D2D72BD4000EF137A /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				2AF8951D2D62532A00124D75 /* SearchController.swift */,
+				2ACE3E592D72B9A700EF137A /* SearchViewModel.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		2ACE3E5E2D72BD4C00EF137A /* ResultController */ = {
+			isa = PBXGroup;
+			children = (
+				2ACE3E5F2D72BD7E00EF137A /* ResultController.swift */,
+			);
+			path = ResultController;
 			sourceTree = "<group>";
 		};
 		2AD027282D510DD100D914EC = {
@@ -438,7 +461,6 @@
 				2AF895212D62539800124D75 /* MapCoordinator.swift */,
 				2AF8952D2D63B4F100124D75 /* MapNavigation.swift */,
 				2AF8952F2D63B58D00124D75 /* Map */,
-				2AF895292D639F6A00124D75 /* MapViewModel.swift */,
 				2AF895302D63B64900124D75 /* Detail */,
 				2A6DEDEF2D70D58600393961 /* Route */,
 			);
@@ -448,8 +470,10 @@
 		2AF895142D60A95C00124D75 /* SearchBar */ = {
 			isa = PBXGroup;
 			children = (
-				2AF8951D2D62532A00124D75 /* SearchController.swift */,
+				2ACE3E5B2D72BA7600EF137A /* SearchNavigation.swift */,
 				2AF895232D62542D00124D75 /* SearchCoordinator.swift */,
+				2ACE3E5D2D72BD4000EF137A /* Search */,
+				2ACE3E5E2D72BD4C00EF137A /* ResultController */,
 			);
 			path = SearchBar;
 			sourceTree = "<group>";
@@ -477,6 +501,7 @@
 			isa = PBXGroup;
 			children = (
 				2AF895162D62141A00124D75 /* MapController.swift */,
+				2AF895292D639F6A00124D75 /* MapViewModel.swift */,
 				2AF8952B2D63AFAF00124D75 /* CustomPinAnnotation.swift */,
 			);
 			path = Map;
@@ -701,8 +726,10 @@
 			files = (
 				2AD027B02D56BA7100D914EC /* LoginViewModel.swift in Sources */,
 				2AF895722D69141C00124D75 /* ChargeTokenUseCase.swift in Sources */,
+				2ACE3E602D72BD7E00EF137A /* ResultController.swift in Sources */,
 				2AF895282D62624900124D75 /* MainTabBarView.swift in Sources */,
 				2AF895122D5A6AC000124D75 /* RegisterViewModel.swift in Sources */,
+				2ACE3E5A2D72B9A700EF137A /* SearchViewModel.swift in Sources */,
 				2AF8953F2D64CB6100124D75 /* TouchAPIHelper.swift in Sources */,
 				2AF895582D66761200124D75 /* GofarAPIService.swift in Sources */,
 				2AF895742D6918AE00124D75 /* ChargeTokenService.swift in Sources */,
@@ -725,6 +752,7 @@
 				2AF895392D64BC8900124D75 /* CoreAPIManager.swift in Sources */,
 				2AF895822D69383F00124D75 /* TokTokenHelper.swift in Sources */,
 				2AD027842D54E22800D914EC /* SecondInfoController.swift in Sources */,
+				2ACE3E5C2D72BA7600EF137A /* SearchNavigation.swift in Sources */,
 				2AF895762D6921E400124D75 /* ChargeUseCase.swift in Sources */,
 				2AF895662D6794A100124D75 /* EnrgUseCase.swift in Sources */,
 				2AF895242D62542D00124D75 /* SearchCoordinator.swift in Sources */,

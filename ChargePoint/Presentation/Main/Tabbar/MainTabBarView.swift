@@ -69,9 +69,4 @@ class MainTabBarView: UITabBar {
         }
     }
 
-//    func addCurveToIndex() {
-//        guard let selectedTabView = self.selectedItem?.value(forKey: "view") as? UIView else {return}
-//        self.centeredWidth = selectedTabView.frame.origin.x + (selectedTabView.frame.width/2)
-//        addShape()
-//    }
 }

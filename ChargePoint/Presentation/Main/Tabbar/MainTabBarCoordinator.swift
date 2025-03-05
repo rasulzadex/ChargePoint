@@ -72,8 +72,8 @@ final class MainTabBarCoordinator: Coordinator {
         ]
         
         
-        navigationController.pushViewController(tabbarController, animated: true)
-        
+        navigationController.setViewControllers([tabbarController], animated: true)
+
         parentCoordinator?.children.append(mapCoordinator ?? MapCoordinator(navigationController: navigationController))
         mapCoordinator?.start()
         

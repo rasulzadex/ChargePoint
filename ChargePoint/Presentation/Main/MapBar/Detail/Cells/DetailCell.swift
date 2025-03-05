@@ -110,7 +110,9 @@ class DetailCell: UICollectionViewCell {
         case "OUT_OF_SERVICE", "UNAVAILABLE", "Unavailable":
             return "İşləmir"
         case "preparing": return "Hazırlanır"
-        case "MAINTENANCE": return "Təmirdədir"
+        case "MAINTENANCE": 
+            statusLabel.textColor = .evBlue
+            return "Təmirdədir"
         case "unknown", "Unknown", "UNKNOWN", "No status":
             return "Bilinmir"
         default:

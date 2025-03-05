@@ -7,7 +7,6 @@
 
     import UIKit
     import MapKit
-    import CoreLocation
 
 final class MapController: BaseController {
     

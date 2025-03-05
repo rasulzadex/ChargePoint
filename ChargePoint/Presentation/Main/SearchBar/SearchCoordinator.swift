@@ -20,9 +20,15 @@ final class SearchCoordinator: Coordinator {
     }
     
     func start() {
-        let controller = SearchController()
+        let controller = SearchController(viewModel: .init(navigation: navigationController as? SearchNavigation) )
+        navigationController.isNavigationBarHidden = false
         showController(vc: controller)
     }
     
     
+}
+extension SearchCoordinator: SearchNavigation {
+    func openDetail() {
+        print(#function)
+    }
 }

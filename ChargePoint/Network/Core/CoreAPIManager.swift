@@ -46,7 +46,9 @@ final class CoreAPIManager {
                    // print(" JSON Data yoxdur!")
                     return
                 }
+                
                 if let jsonString = String(data: data, encoding: .utf8) {
+                    
                 }
                 handleResponse(data: data, completion: completion)
                 return
@@ -80,7 +82,7 @@ final class CoreAPIManager {
         let task = session.dataTask(with: request) { [weak self] data, response, error in
             guard let self = self else { return }
             guard let response = response as? HTTPURLResponse else { return }
-            //print(" Status Code: \(response.statusCode)")
+            print(" Status Code: \(response.statusCode)")
             if response.statusCode == 401 {
                 completion(.failure(CoreErrorModel.authError(code: response.statusCode)))
                 return
