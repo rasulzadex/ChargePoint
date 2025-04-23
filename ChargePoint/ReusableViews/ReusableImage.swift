@@ -14,7 +14,11 @@ final class ReusableImage: UIImageView {
     private var contentModeStyle: UIView.ContentMode
     private var cornerRadius: CGFloat
 
-    init(imageName: String, contentMode: UIView.ContentMode = .scaleAspectFill, cornerRadius: CGFloat = 0) {
+    init(
+        imageName: String,
+        contentMode: UIView.ContentMode = .scaleAspectFill,
+        cornerRadius: CGFloat = 0
+    ) {
         self.imageName = imageName
         self.contentModeStyle = contentMode
         self.cornerRadius = cornerRadius

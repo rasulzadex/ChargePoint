@@ -96,9 +96,10 @@ final class MapViewModel {
         socarUseCase.getSocarStations { [weak self] dto, error in
             guard let self else {return}
             callback?(.loaded)
+    
             if let dto = dto {
                 socarDTO = dto
-                socarStations = dto.results
+                socarStations = dto.results ?? []
                 callback?(.successSocar)
             } else if let error = error {
                 callback?(.error("Socar stansiyalarını göstərmək mümkün olmadı", error))

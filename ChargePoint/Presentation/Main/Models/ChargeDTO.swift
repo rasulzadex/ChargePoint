@@ -126,9 +126,9 @@ struct ChargeConnector: Codable {
 // MARK: - Custom
 struct ChargeCustom: Codable {
     let connectorType: String?
-    let lastReportedInfo: ChargeLastReportedInfo
-    let lastReportedErrorCode: ChargeLastReportedErrorCode
-    let lastReportedVendorErrorCode: ChargeLastReportedVendorErrorCode
+    let lastReportedInfo: ChargeLastReportedInfo?
+    let lastReportedErrorCode: ChargeLastReportedErrorCode?
+    let lastReportedVendorErrorCode: ChargeLastReportedVendorErrorCode?
 
     enum CodingKeys: String, CodingKey {
         case connectorType = "connector_type"

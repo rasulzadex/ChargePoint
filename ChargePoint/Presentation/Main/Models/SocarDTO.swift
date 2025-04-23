@@ -11,7 +11,7 @@ import Foundation
 struct SocarDTO: Codable {
     let count: Int?
     let next, previous: SocarJSONNull?
-    let results: [SocarResult]
+    let results: [SocarResult]?
 }
 
 // MARK: - Result

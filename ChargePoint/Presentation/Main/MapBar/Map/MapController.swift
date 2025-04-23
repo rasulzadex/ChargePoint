@@ -10,17 +10,25 @@
 
 final class MapController: BaseController {
     
+    //MARK: - UI Elements
+    
+    //MARK: - Properties
         let manager = CLLocationManager()
         private var lastUserLocation: CLLocationCoordinate2D?
         private let viewModel: MapViewModel
-        
-        init(viewModel: MapViewModel) {
-            self.viewModel = viewModel
-            super.init(nibName: nil, bundle: nil)
-        }
-        required init?(coder: NSCoder) {
-            fatalError("init(coder:) has not been implemented")
-        }
+      
+    //MARK: - init
+    init(viewModel: MapViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    //MARK: - View Lifecycle
+    
+       
         
         private lazy var mapView: MKMapView = {
             let m = MKMapView()
@@ -42,6 +50,7 @@ final class MapController: BaseController {
             i.addGestureRecognizer(tapGesture)
             return i
         }()
+    
     private lazy var reloadIcon: ReusableImage = {
         let i  = ReusableImage(imageName: "r", contentMode: .scaleAspectFill, cornerRadius: 10)
         i.image = UIImage(systemName: "arrow.clockwise.circle")
@@ -51,6 +60,7 @@ final class MapController: BaseController {
         i.addGestureRecognizer(tapGesture)
         return i
     }()
+
         private lazy var zoomPlus: ReusableImage = {
             let i  = ReusableImage(imageName: "zoomin", contentMode: .scaleAspectFill, cornerRadius: 10)
             i.image = UIImage(systemName: "plus.circle")
