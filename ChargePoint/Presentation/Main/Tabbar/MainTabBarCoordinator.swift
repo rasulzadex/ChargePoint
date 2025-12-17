@@ -15,6 +15,7 @@ final class MainTabBarCoordinator: Coordinator {
     var children: [any Coordinator] = []
     var navigationController: UINavigationController
     private let tabbarController = MainTabBarController()
+    private let appDIContainer = AppDIContainer()
 
     private var mapCoordinator: MapCoordinator?
     private var searchCoordinator: SearchCoordinator?
@@ -31,7 +32,10 @@ final class MainTabBarCoordinator: Coordinator {
     
     private func initializeTabBar() {
         let mapNavigationController = UINavigationController()
-        mapCoordinator = MapCoordinator(navigationController: mapNavigationController)
+        mapCoordinator = MapCoordinator(
+            navigationController: mapNavigationController,
+            diContainer: appDIContainer.makeMapDIContainer()
+        )
         mapCoordinator?.parentCoordinator = parentCoordinator
         
         let mapItem = UITabBarItem()
@@ -74,7 +78,12 @@ final class MainTabBarCoordinator: Coordinator {
         
         navigationController.setViewControllers([tabbarController], animated: true)
 
-        parentCoordinator?.children.append(mapCoordinator ?? MapCoordinator(navigationController: navigationController))
+        parentCoordinator?.children.append(
+            mapCoordinator ?? MapCoordinator(
+                navigationController: navigationController,
+                diContainer: appDIContainer.makeMapDIContainer()
+            )
+        )
         mapCoordinator?.start()
         
         parentCoordinator?.children.append(profileCoordinator ?? ProfileCoordinator(navigationController: UINavigationController()))

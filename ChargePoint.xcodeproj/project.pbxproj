@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		2A62936C2EF2998D002F5F4D /* AllStationsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A62936B2EF29972002F5F4D /* AllStationsUseCase.swift */; };
+		2A62936E2EF30170002F5F4D /* MapDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A62936D2EF30166002F5F4D /* MapDIContainer.swift */; };
+		2A6293702EF3081D002F5F4D /* AppDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A62936F2EF30817002F5F4D /* AppDIContainer.swift */; };
 		2A6DEDF12D70D9A300393961 /* RouteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6DEDF02D70D9A300393961 /* RouteViewModel.swift */; };
 		2A6DEDF32D70DA5400393961 /* RouteController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6DEDF22D70DA5400393961 /* RouteController.swift */; };
 		2A6DEDF52D70FAE200393961 /* ReusableStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6DEDF42D70FAE200393961 /* ReusableStackView.swift */; };
@@ -103,6 +105,8 @@
 
 /* Begin PBXFileReference section */
 		2A62936B2EF29972002F5F4D /* AllStationsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllStationsUseCase.swift; sourceTree = "<group>"; };
+		2A62936D2EF30166002F5F4D /* MapDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapDIContainer.swift; sourceTree = "<group>"; };
+		2A62936F2EF30817002F5F4D /* AppDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDIContainer.swift; sourceTree = "<group>"; };
 		2A6DEDF02D70D9A300393961 /* RouteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteViewModel.swift; sourceTree = "<group>"; };
 		2A6DEDF22D70DA5400393961 /* RouteController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteController.swift; sourceTree = "<group>"; };
 		2A6DEDF42D70FAE200393961 /* ReusableStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableStackView.swift; sourceTree = "<group>"; };
@@ -461,6 +465,7 @@
 			isa = PBXGroup;
 			children = (
 				2AF895212D62539800124D75 /* MapCoordinator.swift */,
+				2A62936D2EF30166002F5F4D /* MapDIContainer.swift */,
 				2A62936B2EF29972002F5F4D /* AllStationsUseCase.swift */,
 				2AF8952D2D63B4F100124D75 /* MapNavigation.swift */,
 				2AF8952F2D63B58D00124D75 /* Map */,
@@ -494,6 +499,7 @@
 			isa = PBXGroup;
 			children = (
 				2AF895192D6214EC00124D75 /* MainTabBarCoordinator.swift */,
+				2A62936F2EF30817002F5F4D /* AppDIContainer.swift */,
 				2AF895272D62624900124D75 /* MainTabBarView.swift */,
 				2AF8951B2D6215AC00124D75 /* MainTabBarController.swift */,
 			);
@@ -727,6 +733,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2A6293702EF3081D002F5F4D /* AppDIContainer.swift in Sources */,
 				2AD027B02D56BA7100D914EC /* LoginViewModel.swift in Sources */,
 				2AF895722D69141C00124D75 /* ChargeTokenUseCase.swift in Sources */,
 				2ACE3E602D72BD7E00EF137A /* ResultController.swift in Sources */,
@@ -768,6 +775,7 @@
 				2AF8956C2D69137000124D75 /* RefreshToken.swift in Sources */,
 				2AF895612D6772DC00124D75 /* VoltAPIService.swift in Sources */,
 				2AF895782D6921F100124D75 /* ChargeDTO.swift in Sources */,
+				2A62936E2EF30170002F5F4D /* MapDIContainer.swift in Sources */,
 				2AF8952C2D63AFAF00124D75 /* CustomPinAnnotation.swift in Sources */,
 				2AD0279B2D55744D00D914EC /* LoginController.swift in Sources */,
 				2AF895222D62539800124D75 /* MapCoordinator.swift in Sources */,

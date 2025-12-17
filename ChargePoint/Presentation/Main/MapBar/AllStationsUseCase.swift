@@ -20,6 +20,7 @@ protocol AllStationsUseCase {
 
 public final class AllStationsUseCaseImplementation {
     
+    //MARK: - Properties
     private let voltRepository: VoltRepository
     private let chargeRepository: ChargeRepository
     private let enrgRepository: EnrgRepository
@@ -31,16 +32,26 @@ public final class AllStationsUseCaseImplementation {
     private let chargeTokenRepository: ChargeTokenRepository
 
     
-    init() {
-        self.voltRepository = VoltAPIService(apiService: .sharedApiService)
-        self.chargeRepository = ChargeAPIService(apiService: .sharedApiService)
-        self.enrgRepository = EnrgAPIService(apiService: .sharedApiService)
-        self.touchRepository = TouchAPIService(apiService: .sharedApiService)
-        self.gofarRepository = GofarAPIService(apiService: .sharedApiService)
-        self.tokRepository = TokAPIService(apiService: .sharedApiService)
-        self.socarRepository = SocarAPIService(apiService: .sharedApiService)
-        self.tokTokenRepository = TokTokenService(apiService: .sharedApiService)
-        self.chargeTokenRepository = ChargeTokenService(apiService: .sharedApiService)
+    init(
+        voltRepository: VoltRepository,
+        chargeRepository: ChargeRepository,
+        enrgRepository: EnrgRepository,
+        socarRepository: SocarRepository,
+        touchRepository: TouchRepository,
+        gofarRepository: GofarRepository,
+        tokRepository: TokRepository,
+        tokTokenRepository: TokTokenRepository,
+        chargeTokenRepository: ChargeTokenRepository
+    ) {
+        self.voltRepository = voltRepository
+        self.chargeRepository = chargeRepository
+        self.enrgRepository = enrgRepository
+        self.socarRepository = socarRepository
+        self.touchRepository = touchRepository
+        self.gofarRepository = gofarRepository
+        self.tokRepository = tokRepository
+        self.tokTokenRepository = tokTokenRepository
+        self.chargeTokenRepository = chargeTokenRepository
     }
 }
 

@@ -15,15 +15,23 @@ final class MapCoordinator: Coordinator {
     
     var navigationController: UINavigationController
     
-    init(navigationController: UINavigationController){
+    
+    //MARK: - diContainer
+    private let diContainer: MapDIContainer
+    
+    init(
+        navigationController: UINavigationController,
+        diContainer: MapDIContainer
+    ){
         self.navigationController = navigationController
+        self.diContainer = diContainer
     }
     
     func start() {
         let controller = MapController(
             viewModel: .init(
                 navigation: self,
-                useCase: AllStationsUseCaseImplementation()
+                useCase: diContainer.makeAllStationsUseCase()
             )
         )
         showController(vc: controller)
