@@ -6,8 +6,16 @@
 //
 
 import Foundation
-private let apiService = CoreAPIManager.instance
-final class EnrgAPIService: EnrgUseCase {
+final class EnrgAPIService: EnrgRepository {
+    
+    private let apiService: CoreApiService
+    
+    init(
+        apiService: CoreApiService
+    ) {
+        self.apiService = apiService
+    }
+    
     func getEnrgStations(completion: @escaping ([EnrgDTO]?, String?) -> Void) {
         apiService.request(
             type: [EnrgDTO].self,

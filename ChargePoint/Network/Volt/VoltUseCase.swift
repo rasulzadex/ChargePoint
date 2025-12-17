@@ -6,6 +6,6 @@
 //
 
 import Foundation
-protocol VoltUseCase {
+protocol VoltRepository {
     func getVoltStations(completion: @escaping(VoltDTO?, String?) -> Void)
 }

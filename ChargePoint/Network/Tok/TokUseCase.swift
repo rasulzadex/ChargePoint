@@ -6,6 +6,6 @@
 //
 
 import Foundation
-protocol TokUseCase {
+protocol TokRepository {
     func getTokStations(token:String, completion: @escaping(TokDTO?, String?) -> Void)
 }

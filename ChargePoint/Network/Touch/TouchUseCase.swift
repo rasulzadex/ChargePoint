@@ -7,6 +7,6 @@
 
 import Foundation
 
-protocol TouchUseCase {
+protocol TouchRepository {
     func getTouchStations(completion: @escaping(TouchAzDTO?, String?) -> Void)
 }

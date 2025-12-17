@@ -6,8 +6,16 @@
 //
 
 import Foundation
-private let apiService = CoreAPIManager.instance
-final class SocarAPIService: SocarUseCase {
+final class SocarAPIService: SocarRepository {
+    
+    private let apiService: CoreApiService
+    
+    init(
+        apiService: CoreApiService
+    ) {
+        self.apiService = apiService
+    }
+    
     func getSocarStations(completion: @escaping (SocarDTO?, String?) -> Void) {
         apiService.request(
             type: SocarDTO.self,

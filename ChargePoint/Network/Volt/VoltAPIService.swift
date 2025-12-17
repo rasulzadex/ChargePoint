@@ -6,8 +6,16 @@
 //
 
 import Foundation
-private let apiService = CoreAPIManager.instance
-final class VoltAPIService: VoltUseCase {
+
+final class VoltAPIService: VoltRepository {
+    private let apiService: CoreApiService
+    
+    init(
+        apiService: CoreApiService
+    ) {
+        self.apiService = apiService
+    }
+    
     func getVoltStations(completion: @escaping (VoltDTO?, String?) -> Void) {
         apiService.request(
             type: VoltDTO.self,

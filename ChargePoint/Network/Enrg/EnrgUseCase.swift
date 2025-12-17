@@ -6,6 +6,6 @@
 //
 
 import Foundation
-protocol EnrgUseCase {
+protocol EnrgRepository{
     func getEnrgStations(completion: @escaping([EnrgDTO]?, String?) -> Void)
 }

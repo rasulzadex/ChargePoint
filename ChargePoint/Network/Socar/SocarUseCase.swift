@@ -6,6 +6,6 @@
 //
 
 import Foundation
-protocol SocarUseCase {
+protocol SocarRepository {
     func getSocarStations(completion: @escaping(SocarDTO?, String?) -> Void)
 }

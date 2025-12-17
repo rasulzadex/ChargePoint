@@ -6,8 +6,16 @@
 //
 
 import Foundation
-private let apiService = CoreAPIManager.instance
-final class ChargeAPIService: ChargeUseCase {
+final class ChargeAPIService: ChargeRepository {
+    
+    private let apiService: CoreApiService
+    
+    init(
+        apiService: CoreApiService
+    ) {
+        self.apiService = apiService
+    }
+    
     func getChargeStations(token: String, completion: @escaping (ChargeDTO?, String?) -> Void) {
         apiService.request(
             type: ChargeDTO.self,

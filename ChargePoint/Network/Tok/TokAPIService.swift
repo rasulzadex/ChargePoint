@@ -6,8 +6,17 @@
 //
 
 import Foundation
-private let apiService = CoreAPIManager.instance
-final class TokAPIService: TokUseCase {
+
+final class TokAPIService: TokRepository {
+    
+    private let apiService: CoreApiService
+    
+    init(
+        apiService: CoreApiService
+    ) {
+        self.apiService = apiService
+    }
+    
     func getTokStations(token: String, completion: @escaping (TokDTO?, String?) -> Void) {
         apiService.request(
             type: TokDTO.self,

@@ -8,6 +8,7 @@
 import Foundation
 
 final class MapViewModel {
+    
     enum ViewState {
         case loading
         case loaded
@@ -23,27 +24,18 @@ final class MapViewModel {
     }
     var callback: ((ViewState)->Void)?
     
-    private let socarUseCase: SocarUseCase
-    private let touchUseCase: TouchUseCase
-    private let gofarUseCase: GofarUseCase
-    private let voltUseCase: VoltUseCase
-    private let enrgUseCase: EnrgUseCase
-    private let chargeUseCase: ChargeUseCase
-    private let tokUseCase: TokUseCase
+    private let useCase: AllStationsUseCase
     
-    private (set) var touchDTO: TouchAzDTO?
-    private (set) var socarDTO: SocarDTO?
-    private (set) var gofarDTO: GofarDTO?
-    private (set) var voltDTO: VoltDTO?
-    private (set) var enrgDTO: [EnrgDTO]?
-    private (set) var chargeDTO: ChargeDTO?
-    private (set) var tokDTO: TokDTO?
+    private(set) var touchDTO: TouchAzDTO?
+    private(set) var socarDTO: SocarDTO?
+    private(set) var gofarDTO: GofarDTO?
+    private(set) var voltDTO: VoltDTO?
+    private(set) var enrgDTO: [EnrgDTO]?
+    private(set) var chargeDTO: ChargeDTO?
+    private(set) var tokDTO: TokDTO?
 
-    
-    private (set) var chargeTokenDTO: ChargeToken?
-    private (set) var tokTokenDTO: TokToken?
-    private let chargeTokenUseCase: ChargeTokenUseCase
-    private let tokTokenUseCase: TokTokenUseCase
+    private(set) var chargeTokenDTO: ChargeToken?
+    private(set) var tokTokenDTO: TokToken?
 
     var touchStations: [TouchData] = []
     var socarStations: [SocarResult] = []
@@ -55,18 +47,12 @@ final class MapViewModel {
 
     private weak var navigation: MapNavigation?
     
-    init(navigation: MapNavigation) {
+    init(
+        navigation: MapNavigation,
+        useCase: AllStationsUseCase
+    ) {
         self.navigation = navigation
-        self.touchUseCase = TouchAPIService()
-        self.socarUseCase = SocarAPIService()
-        self.gofarUseCase = GofarAPIService()
-        self.voltUseCase = VoltAPIService()
-        self.enrgUseCase = EnrgAPIService()
-        self.chargeUseCase = ChargeAPIService()
-        self.tokTokenUseCase = TokTokenService()
-        self.chargeTokenUseCase = ChargeTokenService()
-        self.tokUseCase = TokAPIService()
-        
+        self.useCase = useCase
     }
 
     func goToDetail(with model: DetailModel) {
@@ -77,7 +63,7 @@ final class MapViewModel {
     func getTouchPoints() {
         print(#function)
         callback?(.loading)
-        touchUseCase.getTouchStations { [weak self] dto, error in
+        useCase.getTouchStations { [weak self] dto, error in
             guard let self else {return}
             callback?(.loaded)
             if let dto = dto {
@@ -93,7 +79,7 @@ final class MapViewModel {
     func getSocarPoints() {
         print(#function)
         callback?(.loading)
-        socarUseCase.getSocarStations { [weak self] dto, error in
+        useCase.getSocarStations { [weak self] dto, error in
             guard let self else {return}
             callback?(.loaded)
     
@@ -108,7 +94,7 @@ final class MapViewModel {
     }
     func getEnrgPoints() {
         callback?(.loading)
-        enrgUseCase.getEnrgStations { [weak self] dtoArray, error in
+        useCase.getEnrgStations { [weak self] dtoArray, error in
             guard let self else {return}
             callback?(.loaded)
             if let dtoArray = dtoArray {
@@ -122,7 +108,7 @@ final class MapViewModel {
     }
     func getGofarPoints() {
         callback?(.loading)
-        gofarUseCase.getGofarStations { [weak self] dto, error in
+        useCase.getGofarStations { [weak self] dto, error in
             guard let self else {return}
             callback?(.loaded)
             if let dto = dto {
@@ -137,7 +123,7 @@ final class MapViewModel {
     }
     func getVoltPoints() {
         callback?(.loading)
-        voltUseCase.getVoltStations { [weak self] dto, error in
+        useCase.getVoltStations { [weak self] dto, error in
             guard let self else {return}
             callback?(.loaded)
             if let dto = dto {
@@ -153,7 +139,7 @@ final class MapViewModel {
         callback?(.loading)
         getChargeToken { [weak self] in
             guard let self else { return }
-            chargeUseCase.getChargeStations(token: chargeTokenDTO?.accessToken ?? "no access") { [weak self] dto, error in
+            useCase.getChargeStations(token: chargeTokenDTO?.accessToken ?? "no access") { [weak self] dto, error in
                 guard let self else {return}
                 callback?(.loaded)
                 if let dto = dto {
@@ -170,7 +156,7 @@ final class MapViewModel {
         callback?(.loading)
         getTokToken { [weak self] in
             guard let self else { return }
-            tokUseCase.getTokStations(token: tokTokenDTO?.accessToken ?? "no access") { [weak self] dto, error in
+            useCase.getTokStations(token: tokTokenDTO?.accessToken ?? "no access") { [weak self] dto, error in
                 guard let self else {return}
                 callback?(.loaded)
                 if let dto = dto {
@@ -185,7 +171,7 @@ final class MapViewModel {
     }
     
     func getChargeToken(completion: @escaping () -> Void) {
-        chargeTokenUseCase.getChargeRefreshToken { [weak self] dto, error in
+        useCase.getChargeRefreshToken { [weak self] dto, error in
             guard let self else {return}
             if let dto = dto {
                 chargeTokenDTO = dto
@@ -197,7 +183,7 @@ final class MapViewModel {
     }
 
     func getTokToken(completion: @escaping () -> Void) {
-        tokTokenUseCase.getTokToken { [weak self] dto, error in
+        useCase.getTokToken { [weak self] dto, error in
             guard let self else {return}
             if let dto = dto {
                 tokTokenDTO = dto

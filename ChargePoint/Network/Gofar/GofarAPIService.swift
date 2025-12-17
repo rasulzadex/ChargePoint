@@ -6,8 +6,17 @@
 //
 
 import Foundation
-private let apiService = CoreAPIManager.instance
-final class GofarAPIService: GofarUseCase {
+
+final class GofarAPIService: GofarRepository {
+    
+    private let apiService: CoreApiService
+    
+    init(
+        apiService: CoreApiService
+    ) {
+        self.apiService = apiService
+    }
+    
     func getGofarStations(completion: @escaping (GofarDTO?, String?) -> Void) {
         apiService.request(
             type: GofarDTO.self,

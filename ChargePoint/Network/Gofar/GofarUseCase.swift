@@ -6,6 +6,6 @@
 //
 
 import Foundation
-protocol GofarUseCase {
+protocol GofarRepository {
     func getGofarStations(completion: @escaping(GofarDTO?, String?) -> Void)
 }

@@ -6,8 +6,16 @@
 //
 
 import Foundation
-private let apiService = CoreAPIManager.instance
-final class ChargeTokenService: ChargeTokenUseCase {
+final class ChargeTokenService: ChargeTokenRepository {
+    
+    private let apiService: CoreApiService
+    
+    init(
+        apiService: CoreApiService
+    ) {
+        self.apiService = apiService
+    }
+    
     func getChargeRefreshToken(completion: @escaping (ChargeToken?, String?) -> Void) {
         apiService.request(
             type: ChargeToken.self,

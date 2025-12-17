@@ -6,6 +6,6 @@
 //
 
 import Foundation
-protocol ChargeTokenUseCase {
+protocol ChargeTokenRepository {
     func getChargeRefreshToken(completion: @escaping(ChargeToken?, String?) -> Void)
 }

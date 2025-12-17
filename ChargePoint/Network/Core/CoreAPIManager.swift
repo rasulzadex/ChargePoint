@@ -7,8 +7,8 @@
 
 import Foundation
 
-final class CoreAPIManager {
-    static let instance = CoreAPIManager()
+final class CoreApiService {
+    static let sharedApiService = CoreApiService()
     private init() {}
     
     func request<T: Decodable>(

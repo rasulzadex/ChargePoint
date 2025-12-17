@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2A62936C2EF2998D002F5F4D /* AllStationsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A62936B2EF29972002F5F4D /* AllStationsUseCase.swift */; };
 		2A6DEDF12D70D9A300393961 /* RouteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6DEDF02D70D9A300393961 /* RouteViewModel.swift */; };
 		2A6DEDF32D70DA5400393961 /* RouteController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6DEDF22D70DA5400393961 /* RouteController.swift */; };
 		2A6DEDF52D70FAE200393961 /* ReusableStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6DEDF42D70FAE200393961 /* ReusableStackView.swift */; };
@@ -101,6 +102,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2A62936B2EF29972002F5F4D /* AllStationsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllStationsUseCase.swift; sourceTree = "<group>"; };
 		2A6DEDF02D70D9A300393961 /* RouteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteViewModel.swift; sourceTree = "<group>"; };
 		2A6DEDF22D70DA5400393961 /* RouteController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteController.swift; sourceTree = "<group>"; };
 		2A6DEDF42D70FAE200393961 /* ReusableStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableStackView.swift; sourceTree = "<group>"; };
@@ -459,6 +461,7 @@
 			isa = PBXGroup;
 			children = (
 				2AF895212D62539800124D75 /* MapCoordinator.swift */,
+				2A62936B2EF29972002F5F4D /* AllStationsUseCase.swift */,
 				2AF8952D2D63B4F100124D75 /* MapNavigation.swift */,
 				2AF8952F2D63B58D00124D75 /* Map */,
 				2AF895302D63B64900124D75 /* Detail */,
@@ -746,6 +749,7 @@
 				2AF8952A2D639F6A00124D75 /* MapViewModel.swift in Sources */,
 				2AD0275F2D51164600D914EC /* ReusableButton.swift in Sources */,
 				2AF895462D65D7D100124D75 /* TouchAzDTO.swift in Sources */,
+				2A62936C2EF2998D002F5F4D /* AllStationsUseCase.swift in Sources */,
 				2AF895492D662BA800124D75 /* SocarAPIHelper.swift in Sources */,
 				2A6DEDF12D70D9A300393961 /* RouteViewModel.swift in Sources */,
 				2AF8958C2D693C0600124D75 /* TokAPIService.swift in Sources */,

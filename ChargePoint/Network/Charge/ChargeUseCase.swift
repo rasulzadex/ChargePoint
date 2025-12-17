@@ -6,6 +6,6 @@
 //
 
 import Foundation
-protocol ChargeUseCase {
+protocol ChargeRepository {
     func getChargeStations(token:String,completion: @escaping(ChargeDTO?, String?) -> Void)
 }

@@ -7,8 +7,16 @@
 
 import Foundation
 
-private let apiService = CoreAPIManager.instance
-final class TouchAPIService: TouchUseCase {
+final class TouchAPIService: TouchRepository {
+    
+    private let apiService: CoreApiService
+    
+    init(
+        apiService: CoreApiService
+    ) {
+        self.apiService = apiService
+    }
+    
     func getTouchStations(completion: @escaping (TouchAzDTO?, String?) -> Void) {
         apiService.request(
             type: TouchAzDTO.self,
