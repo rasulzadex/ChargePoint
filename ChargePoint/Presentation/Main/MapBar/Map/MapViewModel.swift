@@ -7,33 +7,24 @@
 
 import Foundation
 
-final class MapViewModel {
-    
-    enum ViewState {
-        case loading
-        case loaded
-        case success
-        case successSocar
-        case successTouch
-        case successGofar
-        case successVolt
-        case successEnrg
-        case successCharge
-        case successTok
-        case error(String,String)
-    }
-    var callback: ((ViewState)->Void)?
+enum MapViewState: BaseViewStateProtocol {
+    case loading
+    case loaded
+    case success
+    case successSocar
+    case successTouch
+    case successGofar
+    case successVolt
+    case successEnrg
+    case successCharge
+    case successTok
+    case error(String,String)
+}
+
+final class MapViewModel: BaseViewModel<MapViewState> {
     
     private let useCase: AllStationsUseCase
     
-    private(set) var touchDTO: TouchAzDTO?
-    private(set) var socarDTO: SocarDTO?
-    private(set) var gofarDTO: GofarDTO?
-    private(set) var voltDTO: VoltDTO?
-    private(set) var enrgDTO: [EnrgDTO]?
-    private(set) var chargeDTO: ChargeDTO?
-    private(set) var tokDTO: TokDTO?
-
     private(set) var chargeTokenDTO: ChargeToken?
     private(set) var tokTokenDTO: TokToken?
 
@@ -61,110 +52,101 @@ final class MapViewModel {
 
     
     func getTouchPoints() {
-        print(#function)
-        callback?(.loading)
+        setState(state: .loading)
         useCase.getTouchStations { [weak self] dto, error in
             guard let self else {return}
-            callback?(.loaded)
+            setState(state: .loaded)
             if let dto = dto {
-                touchDTO = dto
                 touchStations = dto.data
-                callback?(.successTouch)
+                setState(state: .successTouch)
             } else if let error = error {
                 print(error)
-                callback?(.error("Touch stansiyalarını göstərmək mümkün olmadı", error))
+                setState(state: .error("Touch stansiyalarını göstərmək mümkün olmadı", error))
             }
         }
     }
     func getSocarPoints() {
         print(#function)
-        callback?(.loading)
+        setState(state: .loading)
         useCase.getSocarStations { [weak self] dto, error in
             guard let self else {return}
-            callback?(.loaded)
+            setState(state: .loaded)
     
             if let dto = dto {
-                socarDTO = dto
                 socarStations = dto.results ?? []
-                callback?(.successSocar)
+                setState(state: .successSocar)
             } else if let error = error {
-                callback?(.error("Socar stansiyalarını göstərmək mümkün olmadı", error))
+                setState(state: .error("Socar stansiyalarını göstərmək mümkün olmadı", error))
             }
         }
     }
     func getEnrgPoints() {
-        callback?(.loading)
+        setState(state: .loading)
         useCase.getEnrgStations { [weak self] dtoArray, error in
             guard let self else {return}
-            callback?(.loaded)
+            setState(state: .loaded)
             if let dtoArray = dtoArray {
-                enrgDTO = dtoArray
                 enrgStations = dtoArray
-                callback?(.successEnrg)
+                setState(state: .successEnrg)
             }else if let error = error {
-                callback?(.error("Enrg stansiyalarını göstərmək mümkün olmadı", error))
+                setState(state: .error("Enrg stansiyalarını göstərmək mümkün olmadı", error))
             }
         }
     }
     func getGofarPoints() {
-        callback?(.loading)
+        setState(state: .loading)
         useCase.getGofarStations { [weak self] dto, error in
             guard let self else {return}
-            callback?(.loaded)
+            setState(state: .loaded)
             if let dto = dto {
-                gofarDTO = dto
                 gofarStations = dto.locations
-                callback?(.successGofar)
+                setState(state: .successGofar)
             } else if let error = error {
-                gofarDTO = dto
-                callback?(.error("Gofar stansiyalarını göstərmək mümkün olmadı", error))
+                setState(state: .error("Gofar stansiyalarını göstərmək mümkün olmadı", error))
             }
         }
     }
     func getVoltPoints() {
-        callback?(.loading)
+        setState(state: .loading)
         useCase.getVoltStations { [weak self] dto, error in
             guard let self else {return}
-            callback?(.loaded)
+            setState(state: .loaded)
             if let dto = dto {
-                voltDTO = dto
                 voltStations = Array(dto.result.values)
-                callback?(.successVolt)
+                setState(state: .successVolt)
             } else if let error = error {
-                callback?(.error("Volt stansiyalarını göstərmək mümkün olmadı", error))
+                setState(state: .error("Volt stansiyalarını göstərmək mümkün olmadı", error))
             }
         }
     }
     func getChargePoints() {
-        callback?(.loading)
+        setState(state: .loading)
         getChargeToken { [weak self] in
             guard let self else { return }
             useCase.getChargeStations(token: chargeTokenDTO?.accessToken ?? "no access") { [weak self] dto, error in
                 guard let self else {return}
-                callback?(.loaded)
+                setState(state: .loaded)
                 if let dto = dto {
-                    chargeDTO = dto
                     chargeStations = dto.objects
-                    callback?(.successCharge)
+                    setState(state: .successCharge)
                 } else if let error = error {
-                    callback?(.error("Charge.az stansiyalarını göstərmək mümkün olmadı", error))
+                    setState(state: .error("Charge.az stansiyalarını göstərmək mümkün olmadı", error))
                 }
             }
         }
     }
     func getTokPoints() {
-        callback?(.loading)
+        setState(state: .loading)
         getTokToken { [weak self] in
             guard let self else { return }
             useCase.getTokStations(token: tokTokenDTO?.accessToken ?? "no access") { [weak self] dto, error in
                 guard let self else {return}
-                callback?(.loaded)
+                setState(state: .loaded)
                 if let dto = dto {
-                    tokDTO = dto
                     tokStations = dto.objects
-                    callback?(.successTok)
+                    setState(state: .successTok)
                 } else if let error = error {
-                    callback?(.error("Tok.az stansiyalarını göstərmək mümkün olmadı", error))
+                    setState(state: .error("Tok.az stansiyalarını göstərmək mümkün olmadı", error))
                 }
             }
         }
@@ -177,7 +159,7 @@ final class MapViewModel {
                 chargeTokenDTO = dto
                 completion()
             } else if let error = error {
-                callback?(.error("ChargeAz üçün Tokeni yeniləmək mümkün olmadı", error))
+                setState(state: .error("ChargeAz üçün Tokeni yeniləmək mümkün olmadı", error))
             }
         }
     }
@@ -189,7 +171,7 @@ final class MapViewModel {
                 tokTokenDTO = dto
                 completion()
             } else if let error = error {
-                callback?(.error("Tok.az üçün Tokeni yeniləmək mümkün olmadı", error))
+                setState(state: .error("Tok.az üçün Tokeni yeniləmək mümkün olmadı", error))
             }
         }
     }

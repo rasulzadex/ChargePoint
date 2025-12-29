@@ -7,16 +7,12 @@
 
 import UIKit
 
-class RouteController: BaseController {
+final class RouteController: BaseViewController<RouteViewModel> {
 
-    let viewModel: RouteViewModel
-    init(viewModel: RouteViewModel) {
-        self.viewModel = viewModel
-        super.init(nibName: nil, bundle: nil)
+    override init(viewModel: RouteViewModel) {
+        super.init(viewModel: viewModel)
     }
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    
     private lazy var blackView: UIView = {
         let v = UIView()
         v.isUserInteractionEnabled = true
@@ -88,7 +84,7 @@ class RouteController: BaseController {
         view.addViews(view: [blackView, routeLabel, stackView])
     }
     
-    override func configureConstraints() {
+    override func configureAnchors() {
         blackView.fillSuperview()
         routeLabel.anchor(
             leading: view.leadingAnchor,

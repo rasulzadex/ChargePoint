@@ -8,26 +8,20 @@
 import UIKit
 import MapKit
 
-final class MapController: BaseController {
+final class MapController: BaseViewController<MapViewModel> {
     
     //MARK: - UI Elements
     
     //MARK: - Properties
     let manager = CLLocationManager()
     private var lastUserLocation: CLLocationCoordinate2D?
-    private let viewModel: MapViewModel
     
     //MARK: - init
-    init(viewModel: MapViewModel) {
-        self.viewModel = viewModel
-        super.init(nibName: nil, bundle: nil)
+    override init(viewModel: MapViewModel) {
+        super.init(viewModel: viewModel)
     }
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
+
     //MARK: - View Lifecycle
-    
     private lazy var mapView: MKMapView = {
         let m = MKMapView()
         m.delegate = self
@@ -35,10 +29,6 @@ final class MapController: BaseController {
         return m
     }()
     
-    private lazy var loadingView = UIActivityIndicatorView().withUsing {
-        $0.style = .large
-        $0.color = .evTurquoise
-    }
     private lazy var locationIcon: ReusableImage = {
         let i  = ReusableImage(imageName: "zoomin", contentMode: .scaleAspectFill, cornerRadius: 10)
         i.image = UIImage(systemName: "location.circle")
@@ -92,7 +82,6 @@ final class MapController: BaseController {
     override func viewDidLoad() {
         super.viewDidLoad()
         managerAccess()
-        configureViewModel()
         getPoints()
         
     }
@@ -318,48 +307,46 @@ final class MapController: BaseController {
         let region = MKCoordinateRegion(center: location, span: span)
         mapView.setRegion(region, animated: true)
     }
-    private func configureViewModel() {
-        viewModel.callback = { [weak self] state in
-            DispatchQueue.main.async {
-                guard let self = self else { return }
-                switch state {
-                case .loading:
-                    self.loadingView.startAnimating()
-                case .loaded:
-                    self.loadingView.stopAnimating()
-                case .success:
-                    print("success")
-                case .error(let errorTitle, let errorMessage):
-                    self.showAlert(title: errorTitle, message: errorMessage)
-                case .successSocar:
-                    self.addSocarStationPins(stations: self.viewModel.socarStations)
-                case .successTouch:
-                    self.addTouchStationPins(stations: self.viewModel.touchStations)
-                case .successGofar:
-                    self.addGofarStationPins(stations: self.viewModel.gofarStations)
-                case .successVolt:
-                    self.addVoltStationPins(stations: self.viewModel.voltStations)
-                case .successEnrg:
-                    self.addEnrgStationPins(stations: self.viewModel.enrgStations)
-                case .successCharge:
-                    self.addChargeStationPins(stations: self.viewModel.chargeStations)
-                case .successTok:
-                    self.addTokStationPins(stations: self.viewModel.tokStations)
-                }
+    
+    override func render(state: MapViewState) {
+        super.render(state: state)
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            switch state {
+            case .loading:
+                startLoading()
+            case .loaded:
+                stopLoading()
+            case .success:
+                print("success")
+            case .error(let errorTitle, let errorMessage):
+                self.showAlert(title: errorTitle, message: errorMessage)
+            case .successSocar:
+                self.addSocarStationPins(stations: self.viewModel.socarStations)
+            case .successTouch:
+                self.addTouchStationPins(stations: self.viewModel.touchStations)
+            case .successGofar:
+                self.addGofarStationPins(stations: self.viewModel.gofarStations)
+            case .successVolt:
+                self.addVoltStationPins(stations: self.viewModel.voltStations)
+            case .successEnrg:
+                self.addEnrgStationPins(stations: self.viewModel.enrgStations)
+            case .successCharge:
+                self.addChargeStationPins(stations: self.viewModel.chargeStations)
+            case .successTok:
+                self.addTokStationPins(stations: self.viewModel.tokStations)
             }
         }
     }
     
-    
-    
     override func configureView() {
         super.configureView()
-        view.addViews(view: [mapView, stackView, loadingView])
+        view.addViews(view: [mapView, stackView])
     }
-    override func configureConstraints() {
-        super.configureConstraints()
+
+    override func configureAnchors() {
+        super.configureAnchors()
         mapView.fillSuperview()
-        loadingView.fillSuperview()
         stackView.anchor(
             bottom: view.safeAreaLayoutGuide.bottomAnchor,
             trailing: view.trailingAnchor,

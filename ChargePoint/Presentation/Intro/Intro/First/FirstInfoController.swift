@@ -7,17 +7,11 @@
 
 import UIKit
 
-final class FirstInfoController: BaseController {
+final class FirstInfoController: BaseViewController<FirstInfoViewModel> {
 
-    private let viewModel: FirstInfoViewModel
-    init(viewModel: FirstInfoViewModel) {
-        self.viewModel = viewModel
-        super.init(nibName: nil, bundle: nil)
+    override init(viewModel: FirstInfoViewModel) {
+        super.init(viewModel: viewModel)
     }
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     
     private lazy var getStartedImage: ReusableImage = {
         let i = ReusableImage(imageName: "evCar", contentMode: .scaleAspectFit)
@@ -81,7 +75,8 @@ final class FirstInfoController: BaseController {
         ])
     }
     
-    override func configureConstraints() {
+    override func configureAnchors() {
+        super.configureAnchors()
         welcomLabel.anchor(
             top: view.safeAreaLayoutGuide.topAnchor,
             leading: view.leadingAnchor,

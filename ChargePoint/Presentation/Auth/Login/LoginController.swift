@@ -7,21 +7,17 @@
 
 import UIKit
 
-final class LoginController: BaseController {
+final class LoginController: BaseViewController<LoginViewModel> {
 
-    private let viewModel: LoginViewModel
-    init(viewModel: LoginViewModel) {
-        self.viewModel = viewModel
-        super.init(nibName: nil, bundle: nil)
-    }
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    override init(viewModel: LoginViewModel) {
+        super.init(viewModel: viewModel)
     }
     
     private lazy var logo: ReusableImage = {
         let i = ReusableImage(imageName: "logo", contentMode: .scaleAspectFit)
         return i
     }()
+    
     private lazy var mailLabel: ReusableLabel = {
         let l = ReusableLabel(text: " Email ", textAlignment: .left, fontName: "Arch", fontSize: 16, textColor: .evTurquoise, numberOfLines: 0, cornerRadius: 0)
         l.backgroundColor = .evBlue
@@ -104,28 +100,13 @@ final class LoginController: BaseController {
             toggleButton.setImage(UIImage(systemName: imageName), for: .normal)
         }
     
-    private func configureViewModel() {
-        viewModel.callback = {[weak self] state in
-            guard let self else {return}
-            switch state {
-            case .loading:
-                print(#function)
-            case .loaded:
-                print(#function)
-            case .success:
-                print(#function)
-            case .error(_):
-                print(#function)
-            }
-        }
-        }
-    
     override func configureView() {
         super.configureView()
         view.addViews(view: [logo,mailField, mailLabel, passField, passLabel, toggleButton, loginButton, registerLabel, googleButton, googleIcon, registerButton, mailIcon])
     }
-    override func configureConstraints() {
-        super.configureConstraints()
+    
+    override func configureAnchors() {
+        super.configureAnchors()
         logo.anchor(
             top: view.safeAreaLayoutGuide.topAnchor,
             leading: view.leadingAnchor,

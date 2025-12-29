@@ -7,16 +7,12 @@
 
 import UIKit
 
-final class DetailController: BaseController {
-    private let viewModel: DetailViewModel
+final class DetailController: BaseViewController<DetailViewModel> {
 
-    init(viewModel: DetailViewModel) {
-        self.viewModel = viewModel
-        super.init(nibName: nil, bundle: nil)
+    override init(viewModel: DetailViewModel) {
+        super.init(viewModel: viewModel)
     }
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    
     private lazy var infoImage: ReusableImage = {
         let i = ReusableImage(imageName: "detailLabel", contentMode: .scaleAspectFit)
         return i
@@ -168,8 +164,9 @@ final class DetailController: BaseController {
         locationLabel.text = viewModel.detail.name
         addressLabel.text = viewModel.detail.address
     }
-    override func configureConstraints() {
-        super.configureConstraints()
+    
+    override func configureAnchors() {
+        super.configureAnchors()
         blackView.fillSuperview()
         infoImage.anchor(
             top: view.safeAreaLayoutGuide.topAnchor,

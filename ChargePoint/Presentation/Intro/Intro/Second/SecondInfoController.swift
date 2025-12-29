@@ -7,17 +7,14 @@
 
 import UIKit
 
-final class SecondInfoController: BaseController {
+final class SecondInfoController: BaseViewController<SecondInfoViewModel> {
 
-    private let viewModel: SecondInfoViewModel
-    init(viewModel: SecondInfoViewModel) {
-        self.viewModel = viewModel
-        super.init(nibName: nil, bundle: nil)
+    override init(
+        viewModel: SecondInfoViewModel
+    ) {
+        super.init(viewModel: viewModel)
     }
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
+
     private lazy var getStartedImage: ReusableImage = {
         let i = ReusableImage(imageName: "logo", contentMode: .scaleAspectFit)
         return i
@@ -84,7 +81,9 @@ final class SecondInfoController: BaseController {
         ])
     }
     
-    override func configureConstraints() {
+    override func configureAnchors() {
+        super.configureAnchors()
+        
         firstInfoLabel.anchorSize(CGSize(width: 0, height: infoStack.frame.height/2))
         getStartedImage.anchor(
             top: view.safeAreaLayoutGuide.topAnchor,

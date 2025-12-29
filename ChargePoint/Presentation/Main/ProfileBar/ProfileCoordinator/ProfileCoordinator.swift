@@ -20,9 +20,13 @@ final class ProfileCoordinator: Coordinator {
     }
     
     func start() {
-        let controller = ProfileController()
+        startFlow()
+    }
+}
+
+extension ProfileCoordinator: ProfileCoordinatorRouter {
+    func startFlow() {
+        let controller = ProfileController(viewModel: .init(router: self))
         showController(vc: controller)
     }
-    
-    
 }

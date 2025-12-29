@@ -6,7 +6,7 @@
 //
 
 import Foundation
-final class DetailViewModel {
+final class DetailViewModel: BaseViewModel<BaseViewState> {
     let detail: DetailModel
     private weak var navigation: MapNavigation?
     init(navigation: MapNavigation?, detail: DetailModel) {

@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class SecondInfoViewModel {
+final class SecondInfoViewModel: BaseViewModel<BaseViewState> {
     
     private weak var navigation: IntroNavigation?
     init(navigation: IntroNavigation) {

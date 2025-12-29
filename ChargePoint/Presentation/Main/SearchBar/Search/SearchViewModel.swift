@@ -6,19 +6,11 @@
 //
 
 import Foundation
-final class SearchViewModel {
+final class SearchViewModel: BaseViewModel<BaseViewState> {
     
-    enum ViewState {
-        case loading
-        case loaded
-        case success
-        case error
-    }
     private weak var navigation: SearchNavigation?
     
     init(navigation: SearchNavigation?) {
         self.navigation = navigation
     }
-    
-    var callback: ((ViewState)->Void)?
 }

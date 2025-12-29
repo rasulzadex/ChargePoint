@@ -7,16 +7,13 @@
 
 import UIKit
 
-final class RegisterController: BaseController {
-    private let viewModel: RegisterViewModel
-    init(viewModel: RegisterViewModel) {
-        self.viewModel = viewModel
-        super.init(nibName: nil, bundle: nil)
+final class RegisterController: BaseViewController<RegisterViewModel> {
+  
+    override init(viewModel: RegisterViewModel) {
+        super.init(viewModel: viewModel)
     }
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    private var ValidationMapping: [UITextField: RegisterViewModel.ValidationType] = [:]
+
+    private var ValidationMapping: [UITextField: ValidationType] = [:]
 
     private lazy var logo: ReusableImage = {
         let i = ReusableImage(imageName: "logo", contentMode: .scaleAspectFit)
@@ -90,22 +87,7 @@ final class RegisterController: BaseController {
             let imageName = passField.isSecureTextEntry ? "eye.slash.fill" : "eye.fill"
             toggleButton.setImage(UIImage(systemName: imageName), for: .normal)
         }
-    private func configureViewModel() {
-        viewModel.callback = {[weak self] state in
-            guard let self else {return}
-            switch state {
-            case .loading:
-                print(#function)
-            case .loaded:
-                print(#function)
-            case .success:
-                print(#function)
-            case .error(_):
-                print(#function)
-            default: break
-            }
-        }
-        }
+
     func setupMapping(){
         ValidationMapping = [
             mailField: .email,
@@ -115,7 +97,7 @@ final class RegisterController: BaseController {
     }
     
     private func checkValidation() {
-        let fields: [(UITextField, RegisterViewModel.ValidationType)] = [
+        let fields: [(UITextField, ValidationType)] = [
             (mailField, .email),
             (passField, .password)
         ]
@@ -147,8 +129,8 @@ final class RegisterController: BaseController {
         view.addViews(view: [logo,mailField, mailLabel, passField, passLabel, toggleButton, loginButton, registerLabel, registerButton])
     }
     
-    override func configureConstraints() {
-        super.configureConstraints()
+    override func configureAnchors() {
+        super.configureAnchors()
         logo.anchor(
             top: view.safeAreaLayoutGuide.topAnchor,
             leading: view.leadingAnchor,

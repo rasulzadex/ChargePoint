@@ -8,17 +8,12 @@
 import UIKit
 import MapKit
 
-final class SearchController: BaseController {
+final class SearchController: BaseViewController<SearchViewModel> {
 
-    let viewModel: SearchViewModel
     private var lastUserLocation: CLLocationCoordinate2D?
 
-    init(viewModel: SearchViewModel) {
-        self.viewModel = viewModel
-        super.init(nibName: nil, bundle: nil)
-    }
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    override init(viewModel: SearchViewModel) {
+        super.init(viewModel: viewModel)
     }
     
     private lazy var mapView: MKMapView = {
@@ -134,8 +129,8 @@ private lazy var reloadIcon: ReusableImage = {
             ]
         )
     }
-    override func configureConstraints() {
-        super.configureConstraints()
+    override func configureAnchors() {
+        super.configureAnchors()
         searchBar.anchor(
             top: view.topAnchor,
             leading: view.leadingAnchor,

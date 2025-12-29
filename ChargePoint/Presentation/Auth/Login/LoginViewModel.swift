@@ -6,16 +6,7 @@
 //
 
 import Foundation
-final class LoginViewModel {
-    
-    enum ViewState {
-        case loading
-        case loaded
-        case success
-        case error(String)
-    }
-    
-    var callback: ((ViewState)->Void)?
+final class LoginViewModel: BaseViewModel<BaseViewState> {
     
     private weak var navigation: AuthNavigation?
     

@@ -6,10 +6,15 @@
 //
 
 import Foundation
-final class RouteViewModel {
+final class RouteViewModel: BaseViewModel<BaseViewState> {
+    
     let detail: DetailModel
+    
     private weak var navigation: MapNavigation?
-    init(navigation: MapNavigation?, detail: DetailModel) {
+    init(
+        navigation: MapNavigation?,
+        detail: DetailModel
+    ) {
         self.navigation = navigation
         self.detail = detail
     }

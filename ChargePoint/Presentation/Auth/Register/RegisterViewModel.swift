@@ -6,24 +6,26 @@
 //
 
 import Foundation
-final class RegisterViewModel {
-   
-    enum ViewState {
-        case loading
-        case loaded
-        case success
-        case error(String)
-        case fieldError(ValidationType)
-        case fieldValid(ValidationType)
-    }
-    enum ValidationType {
-        case email , password
-    }
+
+enum RegisterViewState: BaseViewStateProtocol {
+    case loading
+    case loaded
+    case success
+    case error(String)
+    case fieldError(ValidationType)
+    case fieldValid(ValidationType)
+}
+
+enum ValidationType {
+    case email , password
+}
+
+final class RegisterViewModel: BaseViewModel<RegisterViewState> {
+    
     private var check: [ValidationType: Bool] = [
         .password: false,
         .email: false,
     ]
-    var callback: ((ViewState)->Void)?
     var isAllValid: Bool {
         return check.values.contains(false)
     }
@@ -47,9 +49,9 @@ final class RegisterViewModel {
         }
         check[type] = isValid
         if isValid {
-            callback?(.fieldValid(type))
+            setState(state: .fieldValid(type))
         } else {
-            callback?(.fieldError(type))
+            setState(state: .fieldError(type))
         }
         
         return isValid

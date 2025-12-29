@@ -7,15 +7,17 @@
 
 import Foundation
 
-final class FirstInfoViewModel {
+final class FirstInfoViewModel: BaseViewModel<BaseViewState> {
     
     private weak var navigation: IntroNavigation?
-    init(navigation: IntroNavigation) {
+    
+    init(
+        navigation: IntroNavigation
+    ) {
         self.navigation = navigation
     }
     
     func goToSecondInfo() {
         navigation?.goSecondIntro()
     }
-    
 }
